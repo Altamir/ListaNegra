@@ -1,50 +1,22 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
     <head>
-        <title>Laravel</title>
-
-        <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
-
-        <style>
-            html, body {
-                height: 100%;
-            }
-
-            body {
-                margin: 0;
-                padding: 0;
-                width: 100%;
-                display: table;
-                font-weight: 100;
-                font-family: 'Lato';
-            }
-
-            .container {
-                text-align: center;
-                display: table-cell;
-                vertical-align: middle;
-            }
-
-            .content {
-                text-align: center;
-                display: inline-block;
-            }
-
-            .title {
-                font-size: 96px;
-            }
-            
-            .corpo {
-                font-size: 56px;
-            }
-        </style>
+        <meta charset="UTF-8">
+        <title>Login Form</title>
+        <link rel="stylesheet" href="css/style.css" />
     </head>
     <body>
-        <div class="container">
-            <div class="content">
-                <div class="title">Tela Login</div>
-                <div class="corpo">Tela de login sendo desenvolvida.....</div>
-            </div>
-        </div>
-    </body>
+    <span href="#" class="button" id="toggle-login">Log in</span>
+    <div id="login">
+      <div id="triangle"></div>
+      <h1>Log in</h1>
+      <form>
+        <input type="email" placeholder="Email" />
+        <input type="password" placeholder="Password" />
+        <input type="submit" value="Log in" />
+      </form>
+    </div>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+    <script src="js/index.js"></script>
+  </body>
 </html>

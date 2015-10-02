@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Events;
+namespace ListaNegra\Events;
 
 abstract class Event
 {
