@@ -22,9 +22,6 @@ Route::get('login',function(){
 
 
 //Rotas para login de usuario
-//Route:get('auth/login', 'Auth\AuthController@getLogin');
-//Route:post('auth/login', 'Auth\AuthController@postLogin');
-
 Route::controllers([
  'auth' => 'Auth\AuthController',
  'password' => 'Auth\PasswordController',
@@ -32,6 +29,11 @@ Route::controllers([
  
  Route::get('/', ['middleware'=>'auth', function() {
 
-    return view('welcome');
+    return view('layout/layout');
     
  }]);
+ 
+ Route::get('logout' , function(){
+     Auth::logout();
+     return Redirect::to('/');
+ });
