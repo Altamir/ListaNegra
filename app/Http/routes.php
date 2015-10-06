@@ -11,10 +11,27 @@
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
 });
+*/
 
 Route::get('login',function(){
-    return view('login');
+    return view('auth/login');
 });
+
+
+//Rotas para login de usuario
+//Route:get('auth/login', 'Auth\AuthController@getLogin');
+//Route:post('auth/login', 'Auth\AuthController@postLogin');
+
+Route::controllers([
+ 'auth' => 'Auth\AuthController',
+ 'password' => 'Auth\PasswordController',
+ ]);
+ 
+ Route::get('/', ['middleware'=>'auth', function() {
+
+    return view('welcome');
+    
+ }]);
