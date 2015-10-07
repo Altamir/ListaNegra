@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
         Model::unguard();
 
         $this->call(Usuarios::class);
+        $this->call(Hostel::class);
 
         Model::reguard();
     }

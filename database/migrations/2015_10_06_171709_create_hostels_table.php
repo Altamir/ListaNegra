@@ -12,9 +12,11 @@ class CreateHostelsTable extends Migration
      */
     public function up()
     {
-        Schema::create('hostels', function (Blueprint $table) {
+        Schema::create('hostel', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nome',255);
+            $table->string('telefone',180);
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
             $table->text('descri');
             $table->timestamps();
         });
@@ -27,6 +29,6 @@ class CreateHostelsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('hostels');
+        Schema::drop('hostel');
     }
 }

@@ -37,3 +37,5 @@ Route::controllers([
      Auth::logout();
      return Redirect::to('/');
  });
+ 
+ Route::resource('hostels','HostelController');

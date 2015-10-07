@@ -38,12 +38,16 @@
     			<nav class="mdl-navigation">
     				<a class="mdl-navigation__link" href="">Pesquisar</a>
     				<a class="mdl-navigation__link" href="">Cadastrar Hospede</a>
+    				<a class="mdl-navigation__link" href="hostels">Listar Hostels</a>
     				<a class="mdl-navigation__link" href="logout">Sair</a>
     			</nav>
     		</div>
     		<main class="mdl-layout__content">
     		<div class="page-content">
-    			<h1>Tudo aqui....</h1>	
+    		    
+    			
+    			 @yield('content')
+    			 
     		</div>
     		</main>
     	</div>
