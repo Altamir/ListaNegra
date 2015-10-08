@@ -10,12 +10,6 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-
-/*Route::get('/', function () {
-    return view('welcome');
-});
-*/
-
 Route::get('login',function(){
     return view('auth/login');
 });
@@ -38,4 +32,10 @@ Route::controllers([
      return Redirect::to('/');
  });
  
- Route::resource('hostels','HostelController');
+ 
+ //Rotas de controles protegidos por login...
+Route::group(['middleware' => 'auth'], function()
+{
+    Route::resource('hostels','HostelController');
+    
+});

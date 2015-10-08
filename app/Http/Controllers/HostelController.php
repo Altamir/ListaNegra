@@ -5,6 +5,8 @@ namespace ListaNegra\Http\Controllers;
 use Illuminate\Http\Request;
 use ListaNegra\Http\Requests;
 use ListaNegra\Http\Controllers\Controller;
+use Auth;
+use Redirect;
 
 class HostelController extends Controller
 {
@@ -15,8 +17,18 @@ class HostelController extends Controller
      */
     public function index()
     {
+        
         $hostels = \ListaNegra\Hostel::find(1);
         return view ('hostel.index', ['hostels'=> $hostels]);
+        /*
+        if (Auth::check())
+        {
+            $hostels = \ListaNegra\Hostel::find(1);
+            return view ('hostel.index', ['hostels'=> $hostels]);
+        }
+        return Redirect::to('/');
+        */
+        
     }
 
     /**
