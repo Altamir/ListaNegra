@@ -17,18 +17,9 @@ class HostelController extends Controller
      */
     public function index()
     {
-        
-        $hostels = \ListaNegra\Hostel::find(1);
+        $hostels = \ListaNegra\Hostel::all();
         return view ('hostel.index', ['hostels'=> $hostels]);
-        /*
-        if (Auth::check())
-        {
-            $hostels = \ListaNegra\Hostel::find(1);
-            return view ('hostel.index', ['hostels'=> $hostels]);
-        }
-        return Redirect::to('/');
-        */
-        
+       
     }
 
     /**
