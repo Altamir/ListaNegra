@@ -19,7 +19,6 @@ class HostelController extends Controller
     {
         $hostels = \ListaNegra\Hostel::all();
         return view ('hostel.index', ['hostels'=> $hostels]);
-       
     }
 
     /**

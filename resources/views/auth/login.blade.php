@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <title>Login Form</title>
-        <link rel="stylesheet" href="{{ secure_asset('css/style.css') }}" />
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
     </head>
     <body>
     <span href="#" class="button" id="toggle-login">Log in</span>
@@ -18,6 +18,6 @@
       </form>
     </div>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-    <script src="{{ secure_asset('js/index.js') }}"></script>
+    <script src="{{ asset('js/index.js') }}"></script>
   </body>
 </html>

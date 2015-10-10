@@ -22,9 +22,7 @@ Route::controllers([
  ]);
  
  Route::get('/', ['middleware'=>'auth', function() {
-
     return view('layout/layout');
-    
  }]);
  
  Route::get('logout' , function(){
