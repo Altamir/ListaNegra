@@ -17,7 +17,7 @@
             <div class="mdl-layout-spacer"></div>
             <!-- Navigation. We hide it in small screens. -->
             <nav class="mdl-navigation mdl-layout--large-screen-only">
-                <a class="mdl-navigation__link" href="">{{$hostel->usuario->name or 'Usuario'}}</a>
+                <a class="mdl-navigation__link" href="">{{$user->name or ''}}</a>
                 <a class="mdl-navigation__link" href="logout">Sair</a>
             </nav>
         </div>

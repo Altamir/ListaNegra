@@ -22,9 +22,11 @@ Route::controllers([
  ]);
  
  Route::get('/', ['middleware'=>'auth', function() {
-    return view('layout/layout');
+     $user =  Auth::user();
+    return view('index', ['user' => $user ]);
  }]);
- 
+
+
  Route::get('logout' , function(){
      Auth::logout();
      return Redirect::to('/');
