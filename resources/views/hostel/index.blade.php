@@ -6,7 +6,7 @@
         <div class="mdl-cell mdl-cell--8-col">
             <h5 style="padding:5px;">Hostels Cadastrados</h5>
             <div class="background-cinza">
-                <!-- Tabela -->
+                <!-- Tabela com Hostels cadastrados... -->
                 <table class="mdl-data-table mdl-js-data-table mdl-shadow--4dp ">
                     <thead>
                     <tr>
