@@ -10,6 +10,15 @@ use Redirect;
 
 class HostelController extends Controller
 {
+    
+    private $usuarioLogado;
+    
+    public function __construct(){
+        
+        $this->usuarioLogado =  Auth::user();
+    }
+    
+    
     /**
      * Display a listing of the resource.
      *
@@ -18,8 +27,7 @@ class HostelController extends Controller
     public function index()
     {
         $hostels = \ListaNegra\Hostel::all();
-         $user =  Auth::user();
-        return view ('hostel.index', ['hostels'=> $hostels, 'user' => $user]);
+        return view ('hostel.index', ['hostels'=> $hostels, 'user' => $this->usuarioLogado]);
     }
 
     /**
@@ -29,7 +37,7 @@ class HostelController extends Controller
      */
     public function create()
     {
-        //
+        return view ('hostel.create', ['user' => $this->usuarioLogado]);
     }
 
     /**

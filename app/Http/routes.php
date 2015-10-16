@@ -21,16 +21,16 @@ Route::controllers([
  'password' => 'Auth\PasswordController',
  ]);
  
- Route::get('/', ['middleware'=>'auth', function() {
+ Route::get('/', ['middleware'=>'auth','as' => 'raiz', function() {
      $user =  Auth::user();
     return view('index', ['user' => $user ]);
  }]);
 
 
- Route::get('logout' , function(){
+ Route::get('logout'  ,['as' => 'logout', function(){
      Auth::logout();
      return Redirect::to('/');
- });
+ }]);
  
  
  //Rotas de controles protegidos por login...
