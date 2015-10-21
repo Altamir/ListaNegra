@@ -7,6 +7,7 @@ use ListaNegra\Http\Requests;
 use ListaNegra\Http\Controllers\Controller;
 use Auth;
 use Redirect;
+use \ListaNegra\Hostel as Hostel;
 
 class HostelController extends Controller
 {
@@ -26,8 +27,13 @@ class HostelController extends Controller
      */
     public function index()
     {
-        $hostels = \ListaNegra\Hostel::all();
+        $hostels = Hostel::all();
         return view ('hostel.index', ['hostels'=> $hostels, 'user' => $this->usuarioLogado]);
+    }
+    
+    public function verificaSeExistePorNome($nome){
+        $hostels = \ListaNegra\User::where('name', '=' ,$nome)->get()->first();
+        return count($hostels);
     }
 
     /**

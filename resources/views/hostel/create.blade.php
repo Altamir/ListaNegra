@@ -36,22 +36,23 @@
                         
                     </div>  
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                        <input class="mdl-textfield__input" type="text" id="name" />
+                        <input class="mdl-textfield__input" required="required" type="text" id="name" />
                         <label class="mdl-textfield__label" for="name">Nome:</label>
                     </div>
                       
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                        <input class="mdl-textfield__input" type="email" id="email" />
+                        <input class="mdl-textfield__input" required="required" type="email" id="email" />
                         <label class="mdl-textfield__label" for="email">Email</label>
                     </div>
                      
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                        <input class="mdl-textfield__input" type="phone"  pattern="-?[0-9]*(\.[0-9]+)?" id="telefone" />
+                        <input class="mdl-textfield__input" type="tel"  pattern="-?[0-9]*(\.[0-9]+)?" maxlength="15"
+                        required="required" id="telefone" />
                         <label class="mdl-textfield__label" for="telefone">Telefone</label>
                     </div>
                      
                     <div class="mdl-textfield mdl-js-textfield  mdl-textfield--floating-label">
-                        <textarea class="mdl-textfield__input" type="text" rows= "5" cols="70"  id="descri" ></textarea>
+                        <textarea class="mdl-textfield__input" type="text" rows= "5" cols="70" required="required"  id="descri" ></textarea>
                         <label class="mdl-textfield__label" for="descri" >Descrição</label>
                     </div>
                       
@@ -73,12 +74,34 @@
 </div>
 @endsection
 @section('script')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script type="text/javascript" DEFER="DEFER">
+    function verificaNomeExiste(nome){
+        $.ajax({
+                url: "/validaUser/"+nome,
+                type: "GET",
+                dataType: "text",
+                async: false,
+            
+            }).done(function(resposta) {
+                console.log(resposta);
+                return resposta;
+            
+            }).fail(function(jqXHR, textStatus ) {
+                console.log("Request failed: " + textStatus);
+            
+            })
+            
+            return false;
+    }
+
     function ValidaCampos()
         {
             document.getElementById('erros').style.display = "none";
             var erros = [];
+            //valida nome, extrair metodo;;;
             var nome = document.getElementById('name');
+            
             if(nome.value.length < 3 ){
                 if(nome.value == ''){
                     erros.push('Preencha o nome ') 
@@ -86,16 +109,28 @@
                     erros.push('O nome deve ter mais de 3 caracteres ') 
                 }
                 
+            }else{
+                
+                console.log(verificaNomeExiste(nome.value));
+                
+                if(verificaNomeExiste(nome.value) == '1'){
+                    erros.push('O Nome '+nome.value+' já cadastrado ');
+                }else{
+                    console.log('O nome '+nome.value+' Permitido...');
+                }
+                
             }
+            //Valida Email..
             var email = document.getElementById('email');
             if(email.value == ''){
                 erros.push('Preencha o email ');
             }
+            //valida telefoen
             var telefone = document.getElementById('telefone');
             if(telefone.value == ''){
                 erros.push('Preencha o telefone');
             }
-            
+            //computa erros e apresenta
             if(erros.length > 0){
                 var divErro =  document.getElementById('erros');
                 document.getElementById('erros').innerHTML = "<span>Erros: "+erros+" </span>"; 
@@ -105,10 +140,8 @@
         }
         
         document.getElementById('erros').style.display = "none";
- 
-         
-        var btn = document.getElementById("salvar");
- 
-        btn.addEventListener("click", ValidaCampos);
+        document.getElementById("salvar").addEventListener("click", ValidaCampos);
+        
+        
 </script>
 @endsection
