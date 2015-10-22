@@ -73,8 +73,15 @@ function validEmail(){
         }else{
            erros.push('Email invalido '); 
         }
-        console.log(parte);
-        console.log(erros);
+       // console.log(parte);
+        //console.log(erros);
+    }
+}
+
+function validaDescricao(){
+    var descr = $('#descri');
+    if(descr.val() ==''){
+        erros.push('Descrição não deve estar vazio ');
     }
 }
 
@@ -86,6 +93,7 @@ function ValidaCampos()
     validaNome();
     validaTelefone();
     validEmail();
+    validaDescricao();
     //computa erros e apresenta
     if(erros.length > 0){
         var divErro =  document.getElementById('erros');

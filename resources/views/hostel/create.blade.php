@@ -53,7 +53,7 @@
                      
                     <div class="mdl-textfield mdl-js-textfield  mdl-textfield--floating-label">
                         <textarea class="mdl-textfield__input" type="text" rows= "5" cols="70" required="required"  id="descri" ></textarea>
-                        <label class="mdl-textfield__label" for="descri" >Descrição</label>
+                        <label class="mdl-textfield__label" for="" >Descrição</label>
                     </div>
                       
                 </form>
