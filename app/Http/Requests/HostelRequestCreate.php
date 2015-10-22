@@ -24,9 +24,9 @@ class HostelRequestCreate extends Request
     public function rules()
     {
         return [
-            'name' => 'required|unique:users|min:3',
+            'name' => 'required|min:3',
             'email' => 'required|email',
-            'telefone'=> 'required|regex:-?[0-9]*(\.[0-9]+)',
+            'telefone'=> 'required',
             'descri' => 'required|min:5'
         ];
     }

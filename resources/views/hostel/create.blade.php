@@ -31,29 +31,29 @@
                 <h2 class="mdl-card__title-text">Cadastro Hostel</h2>
             </div>
             <div class="mdl-card__supporting-text">
-               <form id="form" action="{{route('hostels.create')}}" method="post">
+                   <form id="form" action="{{route('hostels.store')}}" method="post">
                     <div class="erros" id='erros'>
                         
                     </div>
-                   <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                        <input class="mdl-textfield__input" required="required" type="text" id="name" />
+                        <input class="mdl-textfield__input" required="required" type="text" id="name" name="name" value="{{old('name')}}" />
                         <label class="mdl-textfield__label" for="name">Nome:</label>
                     </div>
                       
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                        <input class="mdl-textfield__input" required="required" type="email" id="email" />
+                        <input class="mdl-textfield__input" required="required" type="email" id="email" name="email" value="{{ old('email') }}" />
                         <label class="mdl-textfield__label" for="email">Email</label>
                     </div>
                      
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                         <input class="mdl-textfield__input" type="tel"  pattern="-?[0-9]*(\.[0-9]+)?" maxlength="15"
-                        required="required" id="telefone" />
+                        required="required" id="telefone" name="telefone" value="{{ old('telefone')}}" />
                         <label class="mdl-textfield__label" for="telefone">Telefone</label>
                     </div>
                      
                     <div class="mdl-textfield mdl-js-textfield  mdl-textfield--floating-label">
-                        <textarea class="mdl-textfield__input" type="text" rows= "5" cols="70" required="required"  id="descri" ></textarea>
+                        <textarea class="mdl-textfield__input" type="text" rows= "5" cols="70" required="required"  id="descri" name="descri" value="{{old('descri')}}"></textarea>
                         <label class="mdl-textfield__label" for="" >Descrição</label>
                     </div>
                       
@@ -69,6 +69,13 @@
                     </div>
                 </div>
             </div>
+            @if (count($errors) > 0)
+                <ul>
+                    @foreach ($errors->all() as $erro)
+                        <li>{{$erro }}</li>
+                    @endforeach
+                </ul>
+            @endif
            
         </div>
     </div>
