@@ -3,9 +3,11 @@
 namespace ListaNegra\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Routing\Route;
 use ListaNegra\Http\Requests;
 use ListaNegra\Http\Controllers\Controller;
 use Auth;
+use ListaNegra\User;
 use Redirect;
 use \ListaNegra\Hostel as Hostel;
 
@@ -49,12 +51,14 @@ class HostelController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request|Requests\HostelRequestCreate $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Requests\HostelRequestCreate $request)
     {
-        //
+        User::create($request->all());
+        return redirect (route('hostels.create'), ['user' => $this->usuarioLogado]);
+
     }
 
     /**

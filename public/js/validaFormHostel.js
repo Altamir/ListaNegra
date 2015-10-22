@@ -99,7 +99,10 @@ function ValidaCampos()
         var divErro =  document.getElementById('erros');
         document.getElementById('erros').innerHTML = "<span>Erros: "+erros+" </span>"; 
         divErro.style.display = "inline";
+    }else{
+        $('#form').submit();
     }
+
 }
     
     

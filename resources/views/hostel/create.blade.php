@@ -31,10 +31,11 @@
                 <h2 class="mdl-card__title-text">Cadastro Hostel</h2>
             </div>
             <div class="mdl-card__supporting-text">
-               <form action="#">
+               <form id="form" action="{{route('hostels.create')}}" method="post">
                     <div class="erros" id='erros'>
                         
-                    </div>  
+                    </div>
+                   <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                         <input class="mdl-textfield__input" required="required" type="text" id="name" />
                         <label class="mdl-textfield__label" for="name">Nome:</label>
