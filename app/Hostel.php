@@ -12,10 +12,9 @@ class Hostel extends Model
      protected $table = 'hostel';
      
      protected $fillable = ['telefone','user_id','descri'];
-    //
+    
 
     public function usuario(){
-        return  $this->hasOne(User::class,'id');
+        return  $this->hasOne(User::class,'id','user_id');
     }
-    
 }
