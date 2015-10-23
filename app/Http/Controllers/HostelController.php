@@ -3,13 +3,25 @@
 namespace ListaNegra\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Routing\Route;
 use ListaNegra\Http\Requests;
 use ListaNegra\Http\Controllers\Controller;
 use Auth;
+use ListaNegra\User;
 use Redirect;
+use \ListaNegra\Hostel as Hostel;
 
 class HostelController extends Controller
 {
+    
+    private $usuarioLogado;
+    
+    public function __construct(){
+        
+        $this->usuarioLogado =  Auth::user();
+    }
+    
+    
     /**
      * Display a listing of the resource.
      *
@@ -17,9 +29,13 @@ class HostelController extends Controller
      */
     public function index()
     {
-        $hostels = \ListaNegra\Hostel::all();
-         $user =  Auth::user();
-        return view ('hostel.index', ['hostels'=> $hostels, 'user' => $user]);
+        $hostels = Hostel::all();
+        return view ('hostel.index', ['hostels'=> $hostels, 'user' => $this->usuarioLogado]);
+    }
+    
+    public function verificaSeExistePorNome($nome){
+        $hostels = \ListaNegra\User::where('name', '=' ,$nome)->get()->first();
+        return count($hostels);
     }
 
     /**
@@ -29,20 +45,30 @@ class HostelController extends Controller
      */
     public function create()
     {
-        //
+        return view ('hostel.create', ['user' => $this->usuarioLogado]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request|Requests\HostelRequestCreate $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Requests\HostelRequestCreate $request)
     {
-        //
-    }
+      
+        $user = User::create([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'password' => bcrypt($request->input('password')),
+        ]);
+        $newHostel = Hostel::create(['telefone' => $request->input('telefone'),'user_id' => $user->id ,'descri' => $request->input('descri')]);
+       
+        return redirect( route('hostels.index'));
 
+    }
+    
+     
     /**
      * Display the specified resource.
      *

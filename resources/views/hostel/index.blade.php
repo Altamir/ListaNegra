@@ -1,9 +1,9 @@
 @extends('layout.layout')
 @section('content')
-    <div class="demo-container mdl-grid">
+    <div class="mdl-grid">
 
         <div class="mdl-cell mdl-cell--3-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
-        <div class="mdl-cell mdl-cell--8-col">
+        <div class="mdl-cell mdl-cell--8-col mdl-cell--8-col-tablet mdl-cell--4-col-phone">
             <h5 style="padding:5px;">Hostels Cadastrados</h5>
             <div class="background-cinza">
                 <!-- Tabela com Hostels cadastrados... -->
@@ -19,7 +19,7 @@
                     @foreach ($hostels as $hostel)
                         <tr>
                             <td class="mdl-data-table__cell--non-numeric">{{ $hostel->usuario->name }}</td>
-                            <td>{{ $hostel->descri }}</td>
+                            <td class="mdl-data-table__cell--non-numeric">{{ $hostel->descri }}</td>
                             <td>{{ $hostel->telefone }}</td>
                         </tr>
                     @endforeach

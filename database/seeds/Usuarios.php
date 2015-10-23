@@ -24,5 +24,11 @@ class Usuarios extends Seeder
             'email' => 'altamir.benkenstein@outlook.com',
             'password' => bcrypt('54321'),
         ]);
+        
+        DB::table('users')->insert([
+            'name' => 'Convidado',
+            'email' => 'convidado@convidado.com',
+            'password' => bcrypt('12345'),
+        ]);
     }
 }
