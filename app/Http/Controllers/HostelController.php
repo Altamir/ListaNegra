@@ -56,13 +56,19 @@ class HostelController extends Controller
      */
     public function store(Requests\HostelRequestCreate $request)
     {
-       // User::create($request->all());
-        
-        return $request->all();
-        //return redirect (route('hostels.create'), ['user' => $this->usuarioLogado]);
+      
+        $user = User::create([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'password' => bcrypt($request->input('password')),
+        ]);
+        $newHostel = Hostel::create(['telefone' => $request->input('telefone'),'user_id' => $user->id ,'descri' => $request->input('descri')]);
+       
+        return redirect( route('hostels.index'));
 
     }
-
+    
+     
     /**
      * Display the specified resource.
      *

@@ -26,6 +26,7 @@ class HostelRequestCreate extends Request
         return [
             'name' => 'required|min:3',
             'email' => 'required|email',
+            'password' => 'required|min:4',
             'telefone'=> 'required',
             'descri' => 'required|min:5'
         ];

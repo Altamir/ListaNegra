@@ -40,6 +40,11 @@
                         <input class="mdl-textfield__input" required="required" type="text" id="name" name="name" value="{{old('name')}}" />
                         <label class="mdl-textfield__label" for="name">Nome:</label>
                     </div>
+                    
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <input class="mdl-textfield__input" required="required" type="text" id="password" name="password"  />
+                        <label class="mdl-textfield__label" for="password">Senha: </label>
+                    </div>
                       
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                         <input class="mdl-textfield__input" required="required" type="email" id="email" name="email" value="{{ old('email') }}" />
