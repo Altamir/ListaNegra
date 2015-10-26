@@ -33,6 +33,18 @@ Route::controllers([
  }]);
  
  
+ //Rotulos
+ Route::group( ['middleware' => 'auth', 'prefix'=>'rotulo'] , function()
+ {
+    Route::get('',['as'=>'rotulo', 'uses'=>'RotuloController@index']);
+    
+    Route::get('create',['as' => 'rotulo.create', 'uses' => 'RotuloController@create']);
+    
+    Route::post('store',['as'=>'rotulo.store', 'uses'=>'RotuloController@store']);
+             
+ });
+ 
+ 
  //Rotas de controles protegidos por login...
 Route::group(['middleware' => 'auth'], function()
 {

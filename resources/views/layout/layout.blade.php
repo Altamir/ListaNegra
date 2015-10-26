@@ -25,12 +25,11 @@
                 <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
                         for="menu_adm">
                   <li><a class=" mdl-menu__item " href="{{ route('hostels.create') }}">Cadastra Hostel</a></li>
-                  <li><a  class="mdl-menu__item" href="">Cadastro de Rotulos</a></li>
+                  <li><a  class="mdl-menu__item" href="{{ route('rotulo') }}">Cadastro de Rotulos</a></li>
                   <li><a disabled class="mdl-menu__item" href="">Editar Hostels</a></li>
                   <li><a disabled class="mdl-menu__item" href="">Cadastro de Usuarios</a></li>
                 </ul>
                 @endif
-                
             </nav>
              
         </div>

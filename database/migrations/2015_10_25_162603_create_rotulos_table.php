@@ -14,7 +14,7 @@ class CreateRotulosTable extends Migration
     {
         Schema::create('rotulos', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nome',150);
+            $table->string('name',150);
             $table->string('cor',80);
             $table->text('descri');
             $table->nullableTimestamps();
