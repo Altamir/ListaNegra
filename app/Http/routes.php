@@ -36,11 +36,15 @@ Route::controllers([
  //Rotulos
  Route::group( ['middleware' => 'auth', 'prefix'=>'rotulo'] , function()
  {
-    Route::get('',['as'=>'rotulo', 'uses'=>'RotuloController@index']);
+     Route::get('',['as'=>'rotulo', 'uses'=>'RotuloController@index']);
+
+     Route::get('show-All',['as' => 'rotulo.showAll', 'uses' => 'RotuloController@showAll']);
     
-    Route::get('create',['as' => 'rotulo.create', 'uses' => 'RotuloController@create']);
+     Route::get('create',['as' => 'rotulo.create', 'uses' => 'RotuloController@create']);
     
-    Route::post('store',['as'=>'rotulo.store', 'uses'=>'RotuloController@store']);
+     Route::get('{id}/edit',['as' =>'rotulo.edit', 'uses' => 'RotuloController@edit']);
+
+     Route::post('store',['as'=>'rotulo.store', 'uses'=>'RotuloController@store']);
              
  });
  

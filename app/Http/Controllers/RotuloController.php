@@ -19,8 +19,9 @@ class RotuloController extends Controller
      */
     public function index()
     {
-         $user =  Auth::user();
-         return "Aqui vai tabela de rotulos para editar e adicionar novos";
+        $user =  Auth::user();
+        $rotulos = Rotulo::all();
+        return view('rotulo.index',['rotulos' => $rotulos, 'user' => $user]);
     }
 
     /**
@@ -52,6 +53,17 @@ class RotuloController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public function showAll()
+    {
+       return Rotulo::all();
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function show($id)
     {
         //
@@ -65,7 +77,8 @@ class RotuloController extends Controller
      */
     public function edit($id)
     {
-        //
+        
+        return 'Edicao de rotulo ' ;
     }
 
     /**
