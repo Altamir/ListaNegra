@@ -12,6 +12,12 @@ use \ListaNegra\Rotulo as Rotulo;
 
 class RotuloController extends Controller
 {
+
+    private $user;
+
+    public function __construct(){
+        $this->user = Auth::user();
+    }
     /**
      * Display a listing of the resource.
      *
@@ -19,9 +25,9 @@ class RotuloController extends Controller
      */
     public function index()
     {
-        $user =  Auth::user();
+
         $rotulos = Rotulo::all();
-        return view('rotulo.index',['rotulos' => $rotulos, 'user' => $user]);
+        return view('rotulo.index',['rotulos' => $rotulos, 'user' => $this->user]);
     }
 
     /**
@@ -31,8 +37,8 @@ class RotuloController extends Controller
      */
     public function create()
     {
-        $user =  Auth::user();
-        return view('rotulo.create', ['user' => $user ]);
+
+        return view('rotulo.create', ['user' => $this->user ]);
     }
 
     /**
@@ -77,8 +83,9 @@ class RotuloController extends Controller
      */
     public function edit($id)
     {
-        
-        return 'Edicao de rotulo ' ;
+        $rotulo = Rotulo::find($id);
+        $user = $this->user;
+        return view('rotulo.edit', compact('rotulo', 'user'));
     }
 
     /**

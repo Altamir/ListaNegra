@@ -28,27 +28,25 @@
     <div class="mdl-cell mdl-cell--8-col mdl-cell--8-col-tablet mdl-cell--4-col-phone">
         <div class="lista-card-square mdl-card mdl-shadow--2dp">
             <div class="mdl-card__title mdl-card--expand">
-                <h2 class="mdl-card__title-text">Cadastro Rotulo</h2>
+                <h2 class="mdl-card__title-text">Edição de Rotulo</h2>
             </div>
             <div class="mdl-card__supporting-text">
-                   <form id="form" action="{{route('rotulo.store')}}" method="post">
-                    <div class="erros" id='erros'>
-                        
-                    </div>
+                   <form id="form" action="{{route('rotulo.edit')}}" method="post">
+                    <input name="_method" type="hidden" value="PUT">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                        <input class="mdl-textfield__input" required="required" type="text" id="name" name="name" value="{{old('name')}}" />
+                        <input class="mdl-textfield__input" required="required" type="text" id="name" name="name" value="{{$rotulo->name}}" />
                         <label class="mdl-textfield__label" for="name">Nome:</label>
                     </div>
                      
                      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                        <input class="mdl-textfield__input" required="required" type="color" id="cor" name="cor" value="{{old('cor')}}" />
+                        <input class="mdl-textfield__input" required="required" type="color" id="cor" name="cor" value="{{$rotulo->cor}}" />
                         <label class="mdl-textfield__label" for="cor">Cor:</label>
                     </div>
                      
                     <div class="mdl-textfield mdl-js-textfield  mdl-textfield--floating-label">
-                        <textarea class="mdl-textfield__input" type="text" rows= "5" cols="70" required="required"  id="descri" name="descri" value="{{old('descri')}}"></textarea>
-                        <label class="mdl-textfield__label" for="" >Descrição</label>
+                        <textarea class="mdl-textfield__input" type="text" rows= "5" cols="70" required="required"  id="descri" name="descri" value="{{$rotulo->descri}}"></textarea>
+                        <label class="mdl-textfield__label" for="descri" >Descrição</label>
                     </div>
                       
                 </form>
@@ -76,8 +74,8 @@
 @section('script')
 
 <script type="text/javascript">
+
     document.getElementById("salvar").addEventListener("click",function(){
-       
          document.getElementById("form").submit();
     });
    

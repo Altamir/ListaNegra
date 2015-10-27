@@ -44,6 +44,9 @@ Route::controllers([
     
      Route::get('{id}/edit',['as' =>'rotulo.edit', 'uses' => 'RotuloController@edit']);
 
+     Route::put('{id}/edit',['as' =>'rotulo.edit', 'uses' => 'RotuloController@update']);
+
+
      Route::post('store',['as'=>'rotulo.store', 'uses'=>'RotuloController@store']);
              
  });
