@@ -31,8 +31,8 @@
                 <h2 class="mdl-card__title-text">Edição de Rotulo</h2>
             </div>
             <div class="mdl-card__supporting-text">
-                   <form id="form" action="{{route('rotulo.edit')}}" method="post">
-                    <input name="_method" type="hidden" value="PUT">
+                {!! Form::open(['url'=> "rotulo/$rotulo->id/edit", 'method'=> 'put']) !!}
+
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                         <input class="mdl-textfield__input" required="required" type="text" id="name" name="name" value="{{$rotulo->name}}" />
@@ -49,7 +49,7 @@
                         <label class="mdl-textfield__label" for="descri" >Descrição</label>
                     </div>
                       
-                </form>
+                {!! Form::close() !!}
             </div>
             <div class="mdl-card__actions mdl-card--border" >
                 <div id='btnSalvar'>
