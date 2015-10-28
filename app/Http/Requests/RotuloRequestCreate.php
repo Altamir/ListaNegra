@@ -24,9 +24,9 @@ class RotuloRequestCreate extends Request
     public function rules()
     {
         return [
-            'name' => 'required|min:3',
-            'cor'  => 'required|min:7',
-            'descri' => 'required',
+            'name' => array('required','min:3'),
+            'cor'  => array('required','regex:/(?:#)(?:[0-9a-fA-F]{2}){3,4}/'),
+            'descri' => array('required'),
         ];
     }
 }

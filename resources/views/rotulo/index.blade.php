@@ -17,7 +17,7 @@
                     <tr>
                         <th>Rotulos</th>
                         <th>Cor</th>
-                        <th>Opções</th>
+                        <th class="mdl-data-table__cell--non-numeric">Opções</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -26,21 +26,14 @@
                             <td class="mdl-data-table__cell--non-numeric">{{ $rotulo->name }}</td>
                             <td class="mdl-data-table__cell--non-numeric" style="color:{{$rotulo->cor}}">{{ $rotulo->cor }}</td>
                             <td>
-                                <a href="{{ route('rotulo.show',['id'=>$rotulo->id])}}">
-                                    <button id="" class="mdl-button mdl-js-button mdl-button--primary">
-                                        Ver descrição
-                                    </button>
+                                <a href="{{ route('rotulo.show',['id'=>$rotulo->id])}}" class="mdl-button mdl-js-button mdl-button--primary">
+                                    Detalhes
                                 </a>
-                                <a href="{{ route('rotulo.edit',['id'=>$rotulo->id])}}">
-                                    <button id="" class="mdl-button mdl-js-button mdl-button--primary">
-                                        Editar
-                                    </button>
+                                <a href="{{ route('rotulo.edit',['id'=>$rotulo->id])}}"  class="mdl-button mdl-js-button mdl-button--primary">
+                                    Editar
                                 </a>
-                                |
-                                <a href="{{ route('rotulo.del',['id'=>$rotulo->id])}}">
-                                    <button id="" class="mdl-button mdl-js-button mdl-button--primary">
-                                        Apagar
-                                    </button>
+                                <a href="{{ route('rotulo.del',['id'=>$rotulo->id])}}" class="mdl-button mdl-js-button mdl-button--primary">
+                                    Apagar
                                 </a>
                             </td>
                         </tr>
