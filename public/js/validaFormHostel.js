@@ -1,6 +1,7 @@
 var erros = [];
 
-function verificaNomeExiste(nome){
+function verificaNomeExiste(nome)
+{
     var retorno;
     $.ajax({
         url: "/validaUser/"+nome,
@@ -15,9 +16,10 @@ function verificaNomeExiste(nome){
             console.log("Request failed: " + textStatus);
         })
         return retorno;
-    }
+}
     
-function validaNome(){
+function validaNome()
+{
     var nome = document.getElementById('name');
             
     if(nome.value.length < 3 ){
@@ -45,7 +47,8 @@ function  RemoverCharEspecial(valor)
       return valor.replace(/[^0-9]+/g,'');
 }
 
-function validaTelefone(){
+function validaTelefone()
+{
     var $this = $('#telefone');
     var tel = RemoverCharEspecial($this.val());
     if(tel == ''){
@@ -59,7 +62,8 @@ function validaTelefone(){
     }
 }
 
-function validEmail(){
+function validEmail()
+{
     var email = $('#email');
    
     if(email.val() == ''){
@@ -78,7 +82,8 @@ function validEmail(){
     }
 }
 
-function validaDescricao(){
+function validaDescricao()
+{
     var descr = $('#descri');
     if(descr.val() ==''){
         erros.push('Descrição não deve estar vazio ');
@@ -106,11 +111,13 @@ function ValidaCampos()
 }
     
     
-$('#telefone').blur(function(){
+$('#telefone').blur(function()
+{
     validaTelefone();
-    });
+});
 
-$('#name').blur(function(){
+$('#name').blur(function()
+{
     var $this = $(this);
     document.getElementById('erros').style.display = "none";
     if(!validaNome()){
@@ -121,7 +128,8 @@ $('#name').blur(function(){
     }
 });
     
-jQuery(function($){
+jQuery(function($)
+{
     $("#telefone").mask("(99) 9999-9999?");
 });
         
