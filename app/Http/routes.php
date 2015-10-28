@@ -41,11 +41,14 @@ Route::controllers([
      Route::get('show-All',['as' => 'rotulo.showAll', 'uses' => 'RotuloController@showAll']);
     
      Route::get('create',['as' => 'rotulo.create', 'uses' => 'RotuloController@create']);
+
+     Route::get('{id}/show',['as'=>'rotulo.show','uses'=>'RotuloController@show']);
     
      Route::get('{id}/edit',['as' =>'rotulo.edit', 'uses' => 'RotuloController@edit']);
 
      Route::put('{id}/edit',['as' =>'rotulo.edit', 'uses' => 'RotuloController@update']);
 
+     Route::get('{id}/del',['as'=>'rotulo.del','uses'=> 'RotuloController@destroy']);
 
      Route::post('store',['as'=>'rotulo.store', 'uses'=>'RotuloController@store']);
              

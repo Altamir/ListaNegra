@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use ListaNegra\Http\Requests;
 use ListaNegra\Http\Controllers\Controller;
 use Auth;
+use ListaNegra\Http\Requests\RotuloRequestCreate;
 use ListaNegra\User;
 use \ListaNegra\Rotulo as Rotulo;
 
@@ -44,10 +45,10 @@ class RotuloController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request|RotuloRequestCreate $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RotuloRequestCreate $request)
     {
         Rotulo::create($request->all());
         return redirect( route('rotulo'));
@@ -55,9 +56,8 @@ class RotuloController extends Controller
 
     /**
      * Display the specified resource.
-     *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
+     * @internal param int $id
      */
     public function showAll()
     {
@@ -72,7 +72,10 @@ class RotuloController extends Controller
      */
     public function show($id)
     {
-        //
+        $rotulo = Rotulo::find($id);
+        $user = $this->user;
+        return view('rotulo.show', compact('rotulo', 'user'));
+
     }
 
     /**
@@ -91,13 +94,14 @@ class RotuloController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param Request|RotuloRequestCreate $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(RotuloRequestCreate $request, $id)
     {
-        //
+        Rotulo::find($id)->update($request->all());
+        return redirect( route('rotulo'));
     }
 
     /**
@@ -108,6 +112,7 @@ class RotuloController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Rotulo::find($id)->delete();
+        return redirect( route('rotulo'));
     }
 }

@@ -31,9 +31,7 @@
                 <h2 class="mdl-card__title-text">Edição de Rotulo</h2>
             </div>
             <div class="mdl-card__supporting-text">
-                {!! Form::open(['url'=> "rotulo/$rotulo->id/edit", 'method'=> 'put']) !!}
-
-                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                {!! Form::open(['url'=> "rotulo/$rotulo->id/edit", 'method'=> 'put', 'id'=> 'form']) !!}
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                         <input class="mdl-textfield__input" required="required" type="text" id="name" name="name" value="{{$rotulo->name}}" />
                         <label class="mdl-textfield__label" for="name">Nome:</label>
@@ -45,7 +43,7 @@
                     </div>
                      
                     <div class="mdl-textfield mdl-js-textfield  mdl-textfield--floating-label">
-                        <textarea class="mdl-textfield__input" type="text" rows= "5" cols="70" required="required"  id="descri" name="descri" value="{{$rotulo->descri}}"></textarea>
+                        <textarea class="mdl-textfield__input" type="text" rows= "5" cols="70" required="required"  id="descri" name="descri" >{{$rotulo->descri}}</textarea>
                         <label class="mdl-textfield__label" for="descri" >Descrição</label>
                     </div>
                       
@@ -59,7 +57,7 @@
                     
                 </div>
             </div>
-            @if (count($errors) > 0)
+            @if ($errors->any())
                 <ul>
                     @foreach ($errors->all() as $erro)
                         <li>{{$erro }}</li>

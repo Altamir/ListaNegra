@@ -24,8 +24,9 @@ class RotuloRequestCreate extends Request
     public function rules()
     {
         return [
-           'name' => 'required|min:7|max:7',
-           'cor'  => 'require|min:'
+            'name' => 'required|min:3',
+            'cor'  => 'required|min:7',
+            'descri' => 'required',
         ];
     }
 }

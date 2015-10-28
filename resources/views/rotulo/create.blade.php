@@ -37,7 +37,7 @@
                     </div>
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                        <input class="mdl-textfield__input" required="required" type="text" id="name" name="name" value="{{old('name')}}" />
+                        <input class="mdl-textfield__input" required="required" type="text" id="name" autofocus name="name" value="{{old('name')}}" />
                         <label class="mdl-textfield__label" for="name">Nome:</label>
                     </div>
                      
