@@ -8,9 +8,11 @@ class Acl extends Model
 {
      protected $table = 'acl';
      
-     protected $fillable = ['nome'];
+     protected $fillable = ['name'];
      
-     public function user(){
-         return $this->hasOne(User::class,'id','acl');
+     public function users(){
+          
+         return $this->belongsTo(User::class,'id','acl');
+         
      }
 }

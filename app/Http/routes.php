@@ -14,7 +14,6 @@ Route::get('login',function(){
     return view('auth/login');
 });
 
-
 //Rotas para login de usuario
 Route::controllers([
  'auth' => 'Auth\AuthController',
@@ -22,7 +21,7 @@ Route::controllers([
  ]);
  
  Route::get('/', ['middleware'=>'auth','as' => 'raiz', function() {
-     $user =  Auth::user();
+    $user =  Auth::user();
     return view('index', ['user' => $user ]);
  }]);
 
@@ -32,14 +31,8 @@ Route::controllers([
      return Redirect::to('/');
  }]);
  
- Route::get('user',function(){
-     dd(\ListaNegra\Acl::all());
-     //dd( \ListaNegra\User::find('1')); 
- });
- 
- 
- //Rotulos
- Route::group( ['middleware' => 'auth', 'prefix'=>'rotulo'] , function()
+ //Rotulos acesso apenas Admin
+ Route::group( ['middleware' => ['auth','acl'], 'prefix'=>'rotulo'] , function()
  {
      Route::get('',['as'=>'rotulo', 'uses'=>'RotuloController@index']);
 
@@ -65,6 +58,5 @@ Route::group(['middleware' => 'auth'], function()
 {
     Route::get('validaUser/{nome}','HostelController@verificaSeExistePorNome');
     Route::resource('hostels','HostelController');
-    
     
 });

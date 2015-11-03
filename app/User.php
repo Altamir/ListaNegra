@@ -42,6 +42,6 @@ class User extends Model implements AuthenticatableContract,
     }
     
     public function perfil(){
-        return $this->belongsTo(Acl::class,'acl');
+        return $this->hasOne(Acl::class,'id','acl');
     }
 }

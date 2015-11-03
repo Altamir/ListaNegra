@@ -21,7 +21,7 @@
             <nav class="mdl-navigation mdl-layout--large-screen-only">
                 <a class="mdl-navigation__link" id='menu_adm' href="">{{$user->name or ''}}</a>
                 <a class="mdl-navigation__link" href="{{ route('logout') }}">Sair</a>
-                @if($user->acl == 'admin')
+                @if($user->perfil->name == 'admin')
                 <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
                         for="menu_adm">
                   <li><a class=" mdl-menu__item " href="{{ route('hostels.create') }}">Cadastra Hostel</a></li>
