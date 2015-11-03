@@ -52,11 +52,17 @@ Route::controllers([
              
  });
  
- 
  //Rotas de controles protegidos por login...
 Route::group(['middleware' => 'auth'], function()
 {
     Route::get('validaUser/{nome}','HostelController@verificaSeExistePorNome');
     Route::resource('hostels','HostelController');
     
+    
+});
+
+Route::get('teste',function()
+{
+    return \ListaNegra\Hospede::all();
+        
 });
