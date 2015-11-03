@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call(Usuarios::class);
         $this->call(Hostel::class);
+        $this->call(Acl::class);
 
         Model::reguard();
     }

@@ -30,6 +30,10 @@ class RotuloController extends Controller
         $rotulos = Rotulo::all();
         return view('rotulo.index',['rotulos' => $rotulos, 'user' => $this->user]);
     }
+    
+    public function teste(Request $request){
+        dd($request);
+    }
 
     /**
      * Show the form for creating a new resource.

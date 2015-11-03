@@ -29,5 +29,6 @@ class Kernel extends HttpKernel
         'auth' => \ListaNegra\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'guest' => \ListaNegra\Http\Middleware\RedirectIfAuthenticated::class,
+        'acl' => \ListaNegra\Http\Middleware\Acl::class,
     ];
 }

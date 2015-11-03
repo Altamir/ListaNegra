@@ -17,6 +17,7 @@ class Usuarios extends Seeder
             'name' => 'Altamir',
             'email' => 'altamir.benkenstein@gmail.com',
             'password' => bcrypt('12345'),
+            'acl' => '2',
         ]);
         
          DB::table('users')->insert([
