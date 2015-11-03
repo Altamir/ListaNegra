@@ -28,7 +28,7 @@ class User extends Model implements AuthenticatableContract,
      *
      * @var array
      */
-    protected $fillable = ['name', 'email', 'password'];
+    protected $fillable = ['name', 'email', 'password','acl'];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -39,5 +39,9 @@ class User extends Model implements AuthenticatableContract,
     
     public function hostel(){
         return $this->belongsTo(Hostel::class);
+    }
+    
+    public function perfil(){
+        return $this->belongsTo(Acl::class,'acl');
     }
 }

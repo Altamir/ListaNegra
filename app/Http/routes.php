@@ -32,6 +32,11 @@ Route::controllers([
      return Redirect::to('/');
  }]);
  
+ Route::get('user',function(){
+     dd(\ListaNegra\Acl::all());
+     //dd( \ListaNegra\User::find('1')); 
+ });
+ 
  
  //Rotulos
  Route::group( ['middleware' => 'auth', 'prefix'=>'rotulo'] , function()
