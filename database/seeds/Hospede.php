@@ -16,11 +16,13 @@ class Hospede extends Seeder
         DB::table('hospedes')->insert([
             'name' => 'LAzario Borto',
             'telefone' => '(51) 4312-3465',
+            'user_id' => '1',
         ]);
         
          DB::table('hospedes')->insert([
             'name' => 'Otario das VArxea',
             'telefone' => '(51) 2134-3765',
+             'user_id' => '1',
         ]);
     }
 }

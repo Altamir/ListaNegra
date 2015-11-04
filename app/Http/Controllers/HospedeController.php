@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use Illuminate\Http\Response;
 use ListaNegra\Hospede;
+use ListaNegra\Hostel;
 use ListaNegra\Http\Requests;
 use ListaNegra\Http\Controllers\Controller;
 use Auth;
@@ -59,7 +60,10 @@ class HospedeController extends Controller
      */
     public function store(Request $request)
     {
-        return $request;
+        $request_ = $request->all();
+        $request_['user_id'] = $this->usuarioLogado->id;
+        
+        return Hospede::create($request_);
     }
 
     /**

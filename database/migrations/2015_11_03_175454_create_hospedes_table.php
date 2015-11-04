@@ -16,6 +16,8 @@ class CreateHospedesTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('telefone');
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
             $table->nullableTimestamps();
         });
     }

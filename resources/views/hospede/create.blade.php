@@ -40,10 +40,9 @@
                 @endif
 
                     <div class="erros" id='erros'>
-                        
+
                     </div>
                     {!! Form::open(['route' => 'hospede.store', 'id'=> 'form']) !!}
-
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                         <input class="mdl-textfield__input" required="required" type="text" id="name" name="name" value="{{old('name')}}" />
                         <label class="mdl-textfield__label" for="name">Nome:</label>

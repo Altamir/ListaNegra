@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Hospede extends Model
 {
      
-     protected $fillable = ['name','telefone'];
+     protected $fillable = ['name','telefone','user_id'];
     
 }

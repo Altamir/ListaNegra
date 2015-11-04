@@ -33,7 +33,7 @@
             <div class="mdl-card__supporting-text">
                    <form id="form" action="{{route('hostels.store')}}" method="post">
                     <div class="erros" id='erros'>
-                        
+
                     </div>
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
