@@ -17,8 +17,26 @@ function verificaNomeUserExiste(nome)
         })
         return retorno;
 }
+
+function verificaNomeHospedeExiste(nome)
+{
+    var retorno;
+    $.ajax({
+        url: "/validaHospede/"+nome,
+        type: "GET",
+        dataType: "text",
+        async: false,
+    }).done(function(resposta) {
+        console.log(resposta);
+        retorno = resposta;
+
+    }).fail(function(jqXHR, textStatus ) {
+        console.log("Request failed: " + textStatus);
+    })
+    return retorno;
+}
     
-function validaNome()
+function validaNomeUser()
 {
     var nome = document.getElementById('name');
             
@@ -39,6 +57,30 @@ function validaNome()
             return true;
         }
                 
+    }
+}
+
+function validaNomeHospede()
+{
+    var nome = document.getElementById('name');
+
+    if(nome.value.length < 3 ){
+        if(nome.value == ''){
+            erros.push('Preencha o nome ')
+        }else{
+            erros.push('O nome deve ter mais de 3 caracteres ')
+        }
+        return false;
+    }else{
+
+        if(verificaNomeHospedeExiste(nome.value) == '1'){
+            erros.push('O Nome '+nome.value+' já cadastrado ');
+            return false;
+        }else{
+            console.log('O nome '+nome.value+' Permitido...');
+            return true;
+        }
+
     }
 }
 
@@ -97,13 +139,7 @@ $('#telefone').blur(function()
     validaTelefone();
 });
 
-$('#name').blur(function()
-{
-    var $this = $(this);
-    if(!validaNome()){
-        $this.parent('div').addClass('is-invalid');
-    }
-});
+
     
 jQuery(function($)
 {

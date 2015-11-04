@@ -68,7 +68,7 @@
                 <div id='btnSalvar'>
                    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" id='salvar'>
                         Salvar
-                    </a> 
+                    </a>
                     <div class="mdl-tooltip" for="btnSalvar">
                     Salvar novo Hostel.
                     </div>
@@ -89,5 +89,6 @@
 @section('script')
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script type="text/javascript" src="{{asset('js/jquery.maskedinput.js')}}"></script>
-<script type="text/javascript" DEFER="DEFER" src="{{ asset('js/validaFormHostel.js') }}"></script>
+<script type="text/javascript" DEFER="DEFER" src="{{ asset('js/validateForms.js') }}"></script>
+<script type="text/javascript" DEFER="defer" src="{{ asset('js/validaFormHostel.js') }}"></script>
 @endsection

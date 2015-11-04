@@ -42,7 +42,7 @@
             <span>Hospedes</span>
             <a class="mdl-navigation__link" href="{{route('hospede')}}">Listar Hospedes</a>
             <a class="mdl-navigation__link" href="">Pesquisa Hospede</a>
-            <a class="mdl-navigation__link" href="">Cadastra Hospede</a>
+            <a class="mdl-navigation__link" href="{{route('hospede.create')}}">Cadastra Hospede</a>
             <a class="mdl-navigation__link" href="{{route('logout')}}">Sair</a>
         </nav>
     </div>

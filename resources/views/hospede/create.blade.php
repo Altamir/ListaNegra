@@ -38,11 +38,12 @@
                         @endforeach
                     </ul>
                 @endif
-                   <form id="form" action="" method="post">
+
                     <div class="erros" id='erros'>
                         
                     </div>
-                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                    {!! Form::open(['route' => 'hospede.store', 'id'=> 'form']) !!}
+
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                         <input class="mdl-textfield__input" required="required" type="text" id="name" name="name" value="{{old('name')}}" />
                         <label class="mdl-textfield__label" for="name">Nome:</label>
@@ -53,29 +54,23 @@
                         required="required" id="telefone" name="telefone" value="{{ old('telefone')}}" />
                         <label class="mdl-textfield__label" for="telefone">Telefone</label>
                     </div>
-                     
-                 
-                      
-                </form>
+
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <select name="rotulo" class="mdl-textfield__input">
+                            @foreach($rotulos as $rotulo)
+                            <option value="{{$rotulo->id}}">{{$rotulo->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                {!! Form::close() !!}
             </div>
             <div class="mdl-card__actions mdl-card--border" >
                 <div id='btnSalvar'>
                    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" id='salvar'>
                         Salvar
-                    </a> 
-                    <div class="mdl-tooltip" for="btnSalvar">
-                    Salvar novo Hostel.
-                    </div>
+                    </a>
                 </div>
             </div>
-            @if (count($errors) > 0)
-                <ul>
-                    @foreach ($errors->all() as $erro)
-                        <li>{{$erro }}</li>
-                    @endforeach
-                </ul>
-            @endif
-           
         </div>
     </div>
 </div>
@@ -85,7 +80,40 @@
 <script type="text/javascript" src="{{asset('js/jquery.maskedinput.js')}}"></script>
 <script type="text/javascript" src="{{ asset('js/validateForms.js') }}"></script>
 <script type="text/javascript">
+    function ValidaCampos()
+    {
+        document.getElementById('erros').style.display = "none";
+        erros = [];
+        validaNomeHospede();
+        validaTelefone();
 
+        //computa erros e apresenta
+        if(erros.length > 0){
+            var divErro =  document.getElementById('erros');
+            document.getElementById('erros').innerHTML = "<span>Erros: "+erros+" </span>";
+            divErro.style.display = "inline";
+        }else{
+            $('#form').submit();
+        }
+    }
+
+
+
+    $('#name').blur(function()
+    {
+        erros = [];
+        var $this = $(this);
+        document.getElementById('erros').style.display = "none";
+        if(!validaNomeHospede()){
+            var divErro =  document.getElementById('erros');
+            document.getElementById('erros').innerHTML = "<span>Erros: "+erros+" </span>";
+            divErro.style.display = "inline";
+            $this.parent('div').addClass('is-invalid');
+        }
+    });
+
+    document.getElementById('erros').style.display = "none";
+    document.getElementById("salvar").addEventListener("click", ValidaCampos);
 
 </script>
 @endsection
