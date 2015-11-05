@@ -11,16 +11,16 @@
                     <thead>
                     <tr>
                         <th>Hostel</th>
-                        <th>Descrição</th>
                         <th>Telefone</th>
+                        <th>Cadastrado porh</th>
                     </tr>
                     </thead>
                     <tbody>
                     @foreach ($hospedes as $hospede)
                         <tr>
                             <td class="mdl-data-table__cell--non-numeric">{{ $hospede->name }}</td>
-                            <td class="mdl-data-table__cell--non-numeric">{{ $hospede->rotulo }}</td>
                             <td>{{ $hospede->telefone }}</td>
+                            <td class="mdl-data-table__cell--non-numeric">{{ $hospede->user->name }}</td>
                         </tr>
                     @endforeach
                     </tbody>
