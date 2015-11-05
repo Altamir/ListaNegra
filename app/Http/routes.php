@@ -53,10 +53,25 @@ Route::controllers([
  });
  //Rotas para Hospedes index e create
  Route::group(['middleware' => 'auth' , 'prefix' => 'hospede'] , function() {
-     Route::get('', ['as' => 'hospede', 'uses' => 'HospedeController@index']);
-     Route::get('create', ['as' => 'hospede.create', 'uses' => 'HospedeController@create']);
-     Route::get('validaHospede/{nome}',['as'=> 'hospede.verificaNome', 'uses' => 'HospedeController@verificaSeExistePorNome'] );
-     Route::post('store',['as' => 'hospede.store', 'uses' => 'HospedeController@store']);
+     Route::get('', [
+         'as' => 'hospede',
+         'uses' => 'HospedeController@index']);
+
+     Route::get('create', [
+         'as' => 'hospede.create',
+         'uses' => 'HospedeController@create']);
+
+     Route::get('validaHospede/{nome}',[
+         'as'=> 'hospede.verificaNome',
+         'uses' => 'HospedeController@verificaSeExistePorNome'] );
+     Route::post('store',[
+         'as' => 'hospede.store',
+         'uses' => 'HospedeController@store']);
+
+     Route::get('{id}/show',[
+         'as' => 'hospede.show',
+         'uses' => 'HospedeController@show' ]);
+
  });
  
  //Rotas de controles protegidos por login...

@@ -5,6 +5,7 @@ namespace ListaNegra\Http\Controllers;
 use Illuminate\Http\Request;
 
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\View;
 use ListaNegra\Hospede;
 use ListaNegra\Hostel;
 use ListaNegra\Http\Requests;
@@ -34,7 +35,6 @@ class HospedeController extends Controller
         $hospedes=Hospede::all();
         return view ('hospede.index', ['user' => $this->usuarioLogado,
                         'hospedes' => $hospedes]);
-
     }
 
 
@@ -52,7 +52,6 @@ class HospedeController extends Controller
     {
         $rotulos = Rotulo::all();
         return view ('hospede.create', ['user' => $this->usuarioLogado, 'rotulos' => $rotulos]);
-    
     }
 
     /**
@@ -77,7 +76,10 @@ class HospedeController extends Controller
      */
     public function show($id)
     {
-        //
+        $hospede = Hospede::find($id);
+        return View('hospede.show',[
+            'user' => $this->usuarioLogado,
+            'hospede' => $hospede]);
     }
 
     /**
