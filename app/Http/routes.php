@@ -55,7 +55,7 @@ Route::controllers([
  Route::group(['middleware' => 'auth' , 'prefix' => 'hospede'] , function() {
      Route::get('', ['as' => 'hospede', 'uses' => 'HospedeController@index']);
      Route::get('create', ['as' => 'hospede.create', 'uses' => 'HospedeController@create']);
-     Route::get('validaHospede/{nome}', 'HospedeController@verificaSeExistePorNome');
+     Route::get('validaHospede/{nome}',['as'=> 'hospede.verificaNome', 'uses' => 'HospedeController@verificaSeExistePorNome'] );
      Route::post('store',['as' => 'hospede.store', 'uses' => 'HospedeController@store']);
  });
  
