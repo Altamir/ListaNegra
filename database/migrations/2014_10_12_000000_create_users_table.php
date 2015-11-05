@@ -17,6 +17,12 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password', 60);
+            $table->integer('acl')
+                ->unsigned()
+                ->default(1);
+                
+            $table->foreign('acl')->references('id')->on('acl');
+            
             $table->rememberToken();
             $table->nullableTimestamps();
         });

@@ -14,7 +14,6 @@ Route::get('login',function(){
     return view('auth/login');
 });
 
-
 //Rotas para login de usuario
 Route::controllers([
  'auth' => 'Auth\AuthController',
@@ -22,7 +21,7 @@ Route::controllers([
  ]);
  
  Route::get('/', ['middleware'=>'auth','as' => 'raiz', function() {
-     $user =  Auth::user();
+    $user =  Auth::user();
     return view('index', ['user' => $user ]);
  }]);
 
@@ -32,6 +31,33 @@ Route::controllers([
      return Redirect::to('/');
  }]);
  
+ //Rotulos acesso apenas Admin
+ Route::group( ['middleware' => ['auth','acl'], 'prefix'=>'rotulo'] , function()
+ {
+     Route::get('',['as'=>'rotulo', 'uses'=>'RotuloController@index']);
+
+     Route::get('show-All',['as' => 'rotulo.showAll', 'uses' => 'RotuloController@showAll']);
+    
+     Route::get('create',['as' => 'rotulo.create', 'uses' => 'RotuloController@create']);
+
+     Route::get('{id}/show',['as'=>'rotulo.show','uses'=>'RotuloController@show']);
+    
+     Route::get('{id}/edit',['as' =>'rotulo.edit', 'uses' => 'RotuloController@edit']);
+
+     Route::put('{id}/edit',['as' =>'rotulo.edit', 'uses' => 'RotuloController@update']);
+
+     Route::get('{id}/del',['as'=>'rotulo.del','uses'=> 'RotuloController@destroy']);
+
+     Route::post('store',['as'=>'rotulo.store', 'uses'=>'RotuloController@store']);
+             
+ });
+ //Rotas para Hospedes index e create
+ Route::group(['middleware' => 'auth' , 'prefix' => 'hospede'] , function() {
+     Route::get('', ['as' => 'hospede', 'uses' => 'HospedeController@index']);
+     Route::get('create', ['as' => 'hospede.create', 'uses' => 'HospedeController@create']);
+     Route::get('validaHospede/{nome}', 'HospedeController@verificaSeExistePorNome');
+     Route::post('store',['as' => 'hospede.store', 'uses' => 'HospedeController@store']);
+ });
  
  //Rotas de controles protegidos por login...
 Route::group(['middleware' => 'auth'], function()
@@ -39,5 +65,12 @@ Route::group(['middleware' => 'auth'], function()
     Route::get('validaUser/{nome}','HostelController@verificaSeExistePorNome');
     Route::resource('hostels','HostelController');
     
-    
+    //Rotas para Hospedes index e create
+
+});
+
+Route::get('teste',function()
+{
+    return \ListaNegra\Hospede::all();
+        
 });
