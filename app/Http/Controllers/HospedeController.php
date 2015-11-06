@@ -31,7 +31,10 @@ class HospedeController extends Controller
      */
     public function index()
     {
-        dd( Hospede::all());
+        $hospedes=Hospede::all();
+        return view ('hospede.index', ['user' => $this->usuarioLogado,
+                        'hospedes' => $hospedes]);
+
     }
 
 
