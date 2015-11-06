@@ -34,43 +34,77 @@ Route::controllers([
  //Rotulos acesso apenas Admin
  Route::group( ['middleware' => ['auth','acl'], 'prefix'=>'rotulo'] , function()
  {
-     Route::get('',['as'=>'rotulo', 'uses'=>'RotuloController@index']);
+     Route::get('',[
+         'as'=>'rotulo',
+         'uses'=>'RotuloController@index'
+     ]);
 
-     Route::get('show-All',['as' => 'rotulo.showAll', 'uses' => 'RotuloController@showAll']);
+     Route::get('show-All',[
+         'as' => 'rotulo.showAll',
+         'uses' => 'RotuloController@showAll'
+     ]);
     
-     Route::get('create',['as' => 'rotulo.create', 'uses' => 'RotuloController@create']);
+     Route::get('create',[
+         'as' => 'rotulo.create',
+         'uses' => 'RotuloController@create'
+     ]);
 
-     Route::get('{id}/show',['as'=>'rotulo.show','uses'=>'RotuloController@show']);
+     Route::get('{id}/show',[
+         'as'=>'rotulo.show',
+         'uses'=>'RotuloController@show'
+     ]);
+
+     Route::get('{id}/get-hospedes', [
+         'as'=> 'rotulo.get_hospedes',
+         'uses' => 'RotuloController@getHospedes'
+     ]);
     
-     Route::get('{id}/edit',['as' =>'rotulo.edit', 'uses' => 'RotuloController@edit']);
+     Route::get('{id}/edit',[
+         'as' =>'rotulo.edit',
+         'uses' => 'RotuloController@edit'
+     ]);
 
-     Route::put('{id}/edit',['as' =>'rotulo.edit', 'uses' => 'RotuloController@update']);
+     Route::put('{id}/edit',[
+         'as' =>'rotulo.edit',
+         'uses' => 'RotuloController@update'
+     ]);
 
-     Route::get('{id}/del',['as'=>'rotulo.del','uses'=> 'RotuloController@destroy']);
+     Route::get('{id}/del',[
+         'as'=>'rotulo.del',
+         'uses'=> 'RotuloController@destroy'
+     ]);
 
-     Route::post('store',['as'=>'rotulo.store', 'uses'=>'RotuloController@store']);
+     Route::post('store',[
+         'as'=>'rotulo.store',
+         'uses'=>'RotuloController@store'
+     ]);
              
  });
  //Rotas para Hospedes index e create
  Route::group(['middleware' => 'auth' , 'prefix' => 'hospede'] , function() {
      Route::get('', [
          'as' => 'hospede',
-         'uses' => 'HospedeController@index']);
+         'uses' => 'HospedeController@index'
+     ]);
 
      Route::get('create', [
          'as' => 'hospede.create',
-         'uses' => 'HospedeController@create']);
+         'uses' => 'HospedeController@create'
+     ]);
 
      Route::get('validaHospede/{nome}',[
          'as'=> 'hospede.verificaNome',
-         'uses' => 'HospedeController@verificaSeExistePorNome'] );
+         'uses' => 'HospedeController@verificaSeExistePorNome'
+     ]);
      Route::post('store',[
          'as' => 'hospede.store',
-         'uses' => 'HospedeController@store']);
+         'uses' => 'HospedeController@store'
+     ]);
 
      Route::get('{id}/show',[
          'as' => 'hospede.show',
-         'uses' => 'HospedeController@show' ]);
+         'uses' => 'HospedeController@show'
+     ]);
 
  });
  

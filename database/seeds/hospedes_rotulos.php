@@ -22,5 +22,10 @@ class hospedes_rotulos extends Seeder
             'hospede_id' => 1,
             'rotulo_id' => 2,
         ]);
+
+        DB::table('hospedes_rotulos')->insert([
+            'hospede_id' => 2,
+            'rotulo_id' => 1,
+        ]);
     }
 }
