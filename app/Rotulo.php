@@ -11,5 +11,7 @@ class Rotulo extends Model
      
     protected $fillable = ['name','cor','descri'];
     
-    
+    public function hospedes(){
+        return $this->belongsToMany(Hospede::class,'hospedes_rotulos','rotulo_id');
+    }
 }
