@@ -47,7 +47,7 @@
                     </div>
                      
                     <div class="mdl-textfield mdl-js-textfield  mdl-textfield--floating-label">
-                        <textarea class="mdl-textfield__input" type="text" rows= "5" cols="70" required="required"  id="descri" name="descri" value="{{old('descri')}}"></textarea>
+                        <textarea class="mdl-textfield__input" type="text" rows= "5" cols="70" required="required"  id="descriDefaul" name="descriDefaul" value="{{old('descriDefaul')}}"></textarea>
                         <label class="mdl-textfield__label" for="" >Descrição</label>
                     </div>
                       

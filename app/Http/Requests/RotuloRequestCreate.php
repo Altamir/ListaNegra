@@ -26,7 +26,7 @@ class RotuloRequestCreate extends Request
         return [
             'name' => array('required','min:3'),
             'cor'  => array('required','regex:/(?:#)(?:[0-9a-fA-F]{2}){3,4}/'),
-            'descri' => array('required'),
+            'descriDefaul' => array('required'),
         ];
     }
 }

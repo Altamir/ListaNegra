@@ -15,6 +15,8 @@ class HospedesRotulos extends Migration
         Schema::create('hospedes_rotulos', function (Blueprint $table) {
             $table->increments('id');
 
+            $table->text('descri');
+
             $table->integer('hospede_id')->unsigned();
             $table->foreign('hospede_id')->
             references('id')->

@@ -106,6 +106,20 @@ Route::controllers([
          'uses' => 'HospedeController@show'
      ]);
 
+     Route::get('{id}/edit',[
+         'as' => 'hospede.edit',
+         'uses' => 'HospedeController@edit'
+     ]);
+
+     Route::put('{id}/edit',[
+         'as' => 'hospede.update',
+         'uses' => 'HospedeController@update'
+     ]);
+
+     Route::get('{id}/rotulos',[
+         'uses' => 'HospedeController@getRorulos'
+     ]);
+
  });
  
  //Rotas de controles protegidos por login...

@@ -17,19 +17,19 @@ class Rotulo extends Seeder
             [
             'name' => 'Cadastrado',
             'cor' => '#000000',
-            'descri' => 'Usuario apenas cadastrado',
+            'descriDefaul' => 'Usuario apenas cadastrado',
             ]);
         DB::table('rotulos')->insert(
             [
                 'name' => 'Devedor',
                 'cor' => '#DC143C',
-                'descri' => 'Usuario devedor',
+                'descriDefaul' => 'Usuario devedor',
             ]);
         DB::table('rotulos')->insert(
             [
                 'name' => 'Bebum',
                 'cor' => '#FF4500',
-                'descri' => 'Bebe e faz bagunça.',
+                'descriDefaul' => 'Bebe e faz bagunça.',
             ]);
 
     }

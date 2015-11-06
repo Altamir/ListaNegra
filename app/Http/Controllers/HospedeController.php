@@ -43,6 +43,13 @@ class HospedeController extends Controller
         return count($hospedes);
     }
 
+    public function getRorulos($id)
+    {
+        $hospede = Hospede::find($id);
+
+        return $hospede->rotulos;
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -90,7 +97,11 @@ class HospedeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $hospede = Hospede::find($id);
+        return view('hospede.edit',[
+            'user' => $this->usuarioLogado,
+            'hospede' => $hospede
+        ]);
     }
 
     /**
@@ -102,7 +113,7 @@ class HospedeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return  $request->all();
     }
 
     /**

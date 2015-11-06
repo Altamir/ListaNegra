@@ -14,6 +14,7 @@ class Hospede extends Model
      }
 
      public function rotulos(){
-          return $this->belongsToMany(Rotulo::class,'hospedes_rotulos','hospede_id','rotulo_id');
+          return $this->belongsToMany(Rotulo::class,'hospedes_rotulos','hospede_id')
+              ->withPivot('descri');
      }
 }
