@@ -12,7 +12,7 @@
                     <tr>
                         <th>Hostel</th>
                         <th>Telefone</th>
-                        <th>Cadastrado porh</th>
+                        <th>Cadastrado Por</th>
                     </tr>
                     </thead>
                     <tbody>

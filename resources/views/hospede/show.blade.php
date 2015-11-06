@@ -8,7 +8,7 @@
             color: #fff;
             height: 175px;
             background:
-            url('http://icons.iconarchive.com/icons/pixelkit/gentle-edges/128/Tags-Flat-icon.png') bottom right 15% no-repeat #46B6AC;
+            url('http://www.myiconfinder.com/uploads/iconsets/128-128-9b64afd076d757d628e53f6ce664ddea.png') bottom right 15% no-repeat #46B6AC;
         }
         .mdl-card
         {
@@ -31,12 +31,31 @@
                     <h2 class="mdl-card__title-text">Hospede</h2>
                 </div>
                 <div class="mdl-card__supporting-text">
+
                     {!! Form::open([ 'id'=> 'form']) !!}
+
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                         <input class="mdl-textfield__input" readonly="readonly" required="required" type="text" id="name" name="name" value="{{$hospede->name}}" />
                         <label class="mdl-textfield__label" for="name">Nome:</label>
                     </div>
 
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <input class="mdl-textfield__input" type="tel"   maxlength="15"
+                               required="required" id="telefone" name="telefone" value="{{ $hospede->telefone}}" />
+                        <label class="mdl-textfield__label" for="telefone">Telefone</label>
+                    </div>
+
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <input class="mdl-textfield__input" type="text" readonly="readonly"
+                            id="cadastro" name="cadastro" value="{{$hospede->user->name}}"
+                        >
+                        <label class="mdl-textfield__label" for="cadastro">Cadastrado por</label>
+                    </div>
+                    <ul>
+                    @foreach($hospede->rotulos as $rotulo)
+                        <li STYLE="color:{{$rotulo->cor}}">{{$rotulo->name}}</li>
+                    @endforeach
+                    </ul>
                     {!! Form::close() !!}
                 </div>
                 <div class="mdl-card__actions mdl-card--border" >
