@@ -17,15 +17,19 @@ class HospedesRotulos extends Migration
 
             $table->text('descri');
 
-            $table->integer('hospede_id')->unsigned();
-            $table->foreign('hospede_id')->
-            references('id')->
-            on('hospedes');
+            $table->integer('hospede_id')
+                ->unsigned();
 
-            $table->integer('rotulo_id')->unsigned();
-            $table->foreign('rotulo_id')->
-            references('id')->
-            on('rotulos');
+            $table->foreign('hospede_id')
+                ->references('id')
+                ->on('hospedes');
+
+            $table->integer('rotulo_id')
+                ->unsigned();
+
+            $table->foreign('rotulo_id')
+                ->references('id')
+                ->on('rotulos');
 
             $table->nullableTimestamps();
         });

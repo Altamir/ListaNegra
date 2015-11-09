@@ -28,7 +28,9 @@ class RotuloController extends Controller
     {
 
         $rotulos = Rotulo::all();
-        return view('rotulo.index',['rotulos' => $rotulos, 'user' => $this->user]);
+        return view('rotulo.index',[
+            'rotulos' => $rotulos,
+            'user' => $this->user]);
     }
 
     public function getHospedes($id)
@@ -48,7 +50,6 @@ class RotuloController extends Controller
      */
     public function create()
     {
-
         return view('rotulo.create', ['user' => $this->user ]);
     }
 

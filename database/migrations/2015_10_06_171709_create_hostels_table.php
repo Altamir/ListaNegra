@@ -16,7 +16,11 @@ class CreateHostelsTable extends Migration
             $table->increments('id');
             $table->string('telefone',180);
             $table->integer('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users');
+
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users');
+
             $table->text('descri');
             $table->nullableTimestamps();
         });

@@ -70,7 +70,7 @@
                                     <td class="mdl-data-table__cel--non--numeric">
                                         {{$rotulo->name}}
                                     </td>
-                                    <td>
+                                    <td class="mdl-data-table__cel--non--numeric">
                                         {{$rotulo->pivot->descri}}
                                     </td>
                                 </tr>

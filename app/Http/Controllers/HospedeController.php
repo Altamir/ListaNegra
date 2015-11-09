@@ -58,7 +58,9 @@ class HospedeController extends Controller
     public function create()
     {
         $rotulos = Rotulo::all();
-        return view ('hospede.create', ['user' => $this->usuarioLogado, 'rotulos' => $rotulos]);
+        return view ('hospede.create', [
+            'user' => $this->usuarioLogado,
+            'rotulos' => $rotulos]);
     }
 
     /**
