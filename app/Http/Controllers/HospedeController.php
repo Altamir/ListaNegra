@@ -5,6 +5,7 @@ namespace ListaNegra\Http\Controllers;
 use Illuminate\Http\Request;
 
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\View;
 use ListaNegra\Hospede;
 use ListaNegra\Hostel;
@@ -73,11 +74,14 @@ class HospedeController extends Controller
     {
         $request_ = $request->all();
         $request_['user_id'] = $this->usuarioLogado->id;
-        $request_;
         $hospede = Hospede::create($request_);
-        $request_['hospedes_rotulos.descri']= $hospede->id;
-        $request_;
-        $hospede->rotulos()->attach($request_);
+        $rotulo_hospede = [];
+        $rotulo_hospede['hospede_id'] = $hospede->id;
+        $rotulo_hospede['rotulo_id'] = $request_['rotulo_id'];
+        $rotulo_hospede['descri'] = $request_['descri'];
+        DB::table('hospedes_rotulos')->insert(
+           $rotulo_hospede
+        );
         return redirect( route('hospede'));
     }
 
