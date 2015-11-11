@@ -108,9 +108,11 @@ class HospedeController extends Controller
     public function edit($id)
     {
         $hospede = Hospede::find($id);
+        $rotulos = Rotulo::all();
         return view('hospede.edit',[
             'user' => $this->usuarioLogado,
-            'hospede' => $hospede
+            'hospede' => $hospede,
+            'rotulos'=> $rotulos
         ]);
     }
 
@@ -123,7 +125,32 @@ class HospedeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Hospede::find($id)->update($request->all());
+        $dados_request = $request->all();
+        $rotulo_hospede = [];
+        //
+        if(isset($dados_request['rotulo_id'])){
+            $rotulo_hospede['hospede_id'] = $id;
+            $rotulo_hospede['rotulo_id'] = $dados_request['rotulo_id'];
+            $rotulo_hospede['descri'] = $dados_request['descri'];
+        }
+
+        if(  Hospede::find($id)->update( $request->all() ) ){
+            if(isset($dados_request['rotulo_id'])) {
+                for ($i = 0; $i < count($rotulo_hospede['rotulo_id']); $i++) {
+
+                    DB::table('hospedes_rotulos')->insert(
+                        [   'hospede_id' => $rotulo_hospede['hospede_id'],
+                            'rotulo_id' => $rotulo_hospede['rotulo_id'][$i],
+                            'descri' => $rotulo_hospede['descri'][$i]
+                        ]
+                    );
+                }
+            }
+
+        }else{
+            return"Erro ao salvar a Edição";
+        }
+
         return redirect( route('hospede'));
     }
 

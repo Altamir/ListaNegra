@@ -59,7 +59,8 @@
                             @foreach($rotulos as $rotulo)
                             <option value="{{$rotulo->id}}">{{$rotulo->name}}</option>
                             @endforeach
-                        </select>                    </div>
+                        </select>
+                    </div>
 
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                         <textarea class="mdl-textfield__input" required="required"
