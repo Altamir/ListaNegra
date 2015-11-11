@@ -28,7 +28,7 @@
         <div class="mdl-cell mdl-cell--8-col mdl-cell--8-col-tablet mdl-cell--4-col-phone">
             <div class="lista-card-square mdl-card mdl-shadow--2dp">
                 <div class="mdl-card__title mdl-card--expand">
-                    <h2 class="mdl-card__title-text">Cadastro Hospede</h2>
+                    <h2 class="mdl-card__title-text">Editar Hospede</h2>
                 </div>
                 <div class="mdl-card__supporting-text">
                     @if (count($errors) > 0)
@@ -53,8 +53,39 @@
                         <label class="mdl-textfield__label" for="telefone">Telefone</label>
                     </div>
 
+                    <div>
+                        <table class="mdl-data-table mdl-js-data-table">
 
+                            <thead>
+                            <tr>
+                                <th>Rotulos</th>
+                                <th>Descricao</th>
+                            </tr>
+                            </thead>
 
+                            <tbody>
+                            @foreach($hospede->rotulos as $rotulo)
+                                <tr style="background-color: {{$rotulo->cor}};color: white">
+                                    <td class="mdl-data-table__cel--non--numeric">
+                                        {{$rotulo->name}}
+                                    </td>
+                                    <td class="mdl-data-table__cel--non--numeric">
+                                        {{$rotulo->pivot->descri}}
+                                    </td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <fieldset id="inputs_adicionais" style="border: none">
+                    </fieldset>
+
+                    <div id='btnAddRotulo'>
+                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" id='addRotulo'>
+                            Adicionar Rotúlo
+                        </a>
+                    </div>
 
                     {!! Form::close() !!}
                 </div>
@@ -64,6 +95,7 @@
                             Salvar
                         </a>
                     </div>
+
                 </div>
             </div>
         </div>
@@ -91,8 +123,6 @@
             }
         }
 
-
-
         $('#name').blur(function()
         {
             erros = [];
@@ -104,6 +134,31 @@
                 divErro.style.display = "inline";
                 $this.parent('div').addClass('is-invalid');
             }
+        });
+
+        $(document).ready(function(){
+            var input = '<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">'+
+                            '<select name="rotulo_id[]" class="mdl-textfield__input">'+
+                                 '@foreach($rotulos as $rotulo)'+
+                                '<option value="{{$rotulo->id}}">{{$rotulo->name}}</option>'+
+                                  '@endforeach'+
+                                '</select>'+
+                        '</div>'+
+
+                        '<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">'+
+                            '<textarea class="mdl-textfield__input" required="required"'+
+                                'id="descri" name="descri[]"></textarea>'+
+                            '<label class="mdl-textfield__label" for="descri">Descrição:</label>'+
+                        '</div>';
+            $("#addRotulo").click(function( e ){
+                $('#inputs_adicionais').append( input );
+            });
+
+            $('#inputs_adicionais').delegate('a','click',function( e ){
+                e.preventDefault();
+                $( this ).parent('label').remove();
+            });
+
         });
 
         document.getElementById('erros').style.display = "none";

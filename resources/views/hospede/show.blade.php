@@ -96,7 +96,7 @@
     <script type="text/javascript">
 
         document.getElementById("salvar").addEventListener("click", function () {
-            window.location.href = "{{route('rotulo')}}";
+            window.location.href = "{{route('hospede')}}";
         });
 
     </script>

@@ -5,6 +5,7 @@ namespace ListaNegra\Http\Controllers;
 use Illuminate\Http\Request;
 
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\View;
 use ListaNegra\Hospede;
 use ListaNegra\Hostel;
@@ -73,8 +74,15 @@ class HospedeController extends Controller
     {
         $request_ = $request->all();
         $request_['user_id'] = $this->usuarioLogado->id;
-        
-        return Hospede::create($request_);
+        $hospede = Hospede::create($request_);
+        $rotulo_hospede = [];
+        $rotulo_hospede['hospede_id'] = $hospede->id;
+        $rotulo_hospede['rotulo_id'] = $request_['rotulo_id'];
+        $rotulo_hospede['descri'] = $request_['descri'];
+        DB::table('hospedes_rotulos')->insert(
+           $rotulo_hospede
+        );
+        return redirect( route('hospede'));
     }
 
     /**
@@ -100,9 +108,11 @@ class HospedeController extends Controller
     public function edit($id)
     {
         $hospede = Hospede::find($id);
+        $rotulos = Rotulo::all();
         return view('hospede.edit',[
             'user' => $this->usuarioLogado,
-            'hospede' => $hospede
+            'hospede' => $hospede,
+            'rotulos'=> $rotulos
         ]);
     }
 
@@ -115,7 +125,33 @@ class HospedeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return  $request->all();
+        $dados_request = $request->all();
+        $rotulo_hospede = [];
+        //
+        if(isset($dados_request['rotulo_id'])){
+            $rotulo_hospede['hospede_id'] = $id;
+            $rotulo_hospede['rotulo_id'] = $dados_request['rotulo_id'];
+            $rotulo_hospede['descri'] = $dados_request['descri'];
+        }
+
+        if(  Hospede::find($id)->update( $request->all() ) ){
+            if(isset($dados_request['rotulo_id'])) {
+                for ($i = 0; $i < count($rotulo_hospede['rotulo_id']); $i++) {
+
+                    DB::table('hospedes_rotulos')->insert(
+                        [   'hospede_id' => $rotulo_hospede['hospede_id'],
+                            'rotulo_id' => $rotulo_hospede['rotulo_id'][$i],
+                            'descri' => $rotulo_hospede['descri'][$i]
+                        ]
+                    );
+                }
+            }
+
+        }else{
+            return"Erro ao salvar a Edição";
+        }
+
+        return redirect( route('hospede'));
     }
 
     /**
