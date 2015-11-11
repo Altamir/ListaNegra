@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a0648bd2-437c-4635-8111-f88401f069e8" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/HospedeController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/HospedeController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/hospede/create.blade.php" afterPath="$PROJECT_DIR$/resources/views/hospede/create.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/hospede/edit.blade.php" afterPath="$PROJECT_DIR$/resources/views/hospede/edit.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/storage/database.sqlite" afterPath="$PROJECT_DIR$/storage/database.sqlite" />
-    </list>
+    <list default="true" id="a0648bd2-437c-4635-8111-f88401f069e8" name="Default" comment="" />
     <ignored path="listanegra.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
