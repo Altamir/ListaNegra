@@ -106,50 +106,11 @@
     <script type="text/javascript" src="{{asset('js/jquery.maskedinput.js')}}"></script>
     <script type="text/javascript" src="{{ asset('js/validateForms.js') }}"></script>
     <script type="text/javascript">
-        //funcoes
-        nome = $('#name').val();
-        function ValidaCampos()
-        {
-            document.getElementById('erros').style.display = "none";
-            erros = [];
-            if($('name').val()!= nome){
-                validaNomeHospede();
-            }
-
-            validaTelefone();
-
-            //computa erros e apresenta
-            if(erros.length > 0){
-                var divErro =  document.getElementById('erros');
-                document.getElementById('erros').innerHTML = "<span>Erros: "+erros+" </span>";
-                divErro.style.display = "inline";
-            }else{
-                $('#form').submit();
-            }
-        }
-
-        //trata o nome
-
-        console.log(nome);
-
-        $('#name').blur(function()
-        {
-            erros = [];
-            var $this = $(this);
-            document.getElementById('erros').style.display = "none";
-            if($('name').val() != name){
-                console.log('Entru');
-                if(!validaNomeHospede()){
-                    var divErro =  document.getElementById('erros');
-                    document.getElementById('erros').innerHTML = "<span>Erros: "+erros+" </span>";
-                    divErro.style.display = "inline";
-                    $this.parent('div').addClass('is-invalid');
-                }
-            }
-
-        });
-
         $(document).ready(function(){
+            document.getElementById('erros').style.display = "none";
+            erros = [];
+            var nameOld = $('#name').val();
+            console.log(nameOld);
             var input = '<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">'+
                             '<select name="rotulo_id[]" class="mdl-textfield__input">'+
                                  '@foreach($rotulos as $rotulo)'+
@@ -163,6 +124,7 @@
                                 'id="descri" name="descri[]"></textarea>'+
                             '<label class="mdl-textfield__label" for="descri">Descrição:</label>'+
                         '</div>';
+
             $("#addRotulo").click(function( e ){
                 $('#inputs_adicionais').append( input );
             });
@@ -172,10 +134,43 @@
                 $( this ).parent('label').remove();
             });
 
+            $('#name').blur(function(){
+                var nomeNew = $(this).val()
+                if(nomeNew != nameOld){
+                    validaNomeHospede();
+                    if(erros.length > 0){
+                        var divErro =  document.getElementById('erros');
+                        document.getElementById('erros').innerHTML = "<span>Erros: "+erros+" </span>";
+                        divErro.style.display = "inline";
+                        erros =[];
+                    }
+                }else {
+                    console.log('igual');
+                }
+            });
+
+            $('#btnSalvar').click(function(e){
+                e.preventDefault();
+                var nomeNew = $('#name').val()
+                if(nomeNew != nameOld){
+                    validaNomeHospede();
+                }
+                validaTelefone();
+                if(erros.length > 0){
+                    var divErro =  document.getElementById('erros');
+                    document.getElementById('erros').innerHTML = "<span>Erros: "+erros+" </span>";
+                    divErro.style.display = "inline";
+                }else{
+                    $('#form').submit();
+                }
+            });
+
+
+
         });
 
         document.getElementById('erros').style.display = "none";
-        document.getElementById("salvar").addEventListener("click", ValidaCampos);
+       // document.getElementById("salvar").addEventListener("click", ValidaCampos);
 
     </script>
 @endsection
