@@ -106,11 +106,16 @@
     <script type="text/javascript" src="{{asset('js/jquery.maskedinput.js')}}"></script>
     <script type="text/javascript" src="{{ asset('js/validateForms.js') }}"></script>
     <script type="text/javascript">
+        //funcoes
+        nome = $('#name').val();
         function ValidaCampos()
         {
             document.getElementById('erros').style.display = "none";
             erros = [];
-            validaNomeHospede();
+            if($('name').val()!= nome){
+                validaNomeHospede();
+            }
+
             validaTelefone();
 
             //computa erros e apresenta
@@ -123,17 +128,25 @@
             }
         }
 
+        //trata o nome
+
+        console.log(nome);
+
         $('#name').blur(function()
         {
             erros = [];
             var $this = $(this);
             document.getElementById('erros').style.display = "none";
-            if(!validaNomeHospede()){
-                var divErro =  document.getElementById('erros');
-                document.getElementById('erros').innerHTML = "<span>Erros: "+erros+" </span>";
-                divErro.style.display = "inline";
-                $this.parent('div').addClass('is-invalid');
+            if($('name').val() != name){
+                console.log('Entru');
+                if(!validaNomeHospede()){
+                    var divErro =  document.getElementById('erros');
+                    document.getElementById('erros').innerHTML = "<span>Erros: "+erros+" </span>";
+                    divErro.style.display = "inline";
+                    $this.parent('div').addClass('is-invalid');
+                }
             }
+
         });
 
         $(document).ready(function(){
