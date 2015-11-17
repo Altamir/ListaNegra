@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\View;
+use ListaNegra\Documento;
 use ListaNegra\Hospede;
 use ListaNegra\Hostel;
 use ListaNegra\Http\Requests;
@@ -139,20 +140,19 @@ class HospedeController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $hospede = Hospede::find($id);
         $dados_request = $request->all();
         $rotulo_hospede = [];
         //
-        if(isset($dados_request['rotulo_id'])){
-            $rotulo_hospede['hospede_id'] = $id;
-            $rotulo_hospede['rotulo_id'] = $dados_request['rotulo_id'];
-            $rotulo_hospede['descri'] = $dados_request['descri'];
-        }
+        list($dados_request, $rotulo_hospede) = $this
+            ->IfIssetCaptura($id, $dados_request, $rotulo_hospede);
 
+        $hospede->update( $dados_request ) ;
 
+        Documento::find($hospede->documento->id)
+            ->update(['numero' => $dados_request['documento_numero'] ]);
 
-        Hospede::find($id)->update( $dados_request ) ;
-
-
+       
         if(isset($dados_request['rotulo_id'])) {
             for ($i = 0; $i < count($rotulo_hospede['rotulo_id']); $i++) {
 
@@ -176,5 +176,22 @@ class HospedeController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * @param $id
+     * @param $dados_request
+     * @param $rotulo_hospede
+     * @return array
+     */
+    private function IfIssetCaptura($id, $dados_request, $rotulo_hospede)
+    {
+        if (isset($dados_request['rotulo_id'])) {
+            $rotulo_hospede['hospede_id'] = $id;
+            $rotulo_hospede['rotulo_id'] = $dados_request['rotulo_id'];
+            $rotulo_hospede['descri'] = $dados_request['descri'];
+            return array($dados_request, $rotulo_hospede);
+        }
+        return array($dados_request, $rotulo_hospede);
     }
 }
