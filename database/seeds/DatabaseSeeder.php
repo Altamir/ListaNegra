@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
         $this->call(Acl::class);
         $this->call(Hospede::class);
         $this->call(Rotulo::class);
+        $this->call(hospedes_rotulos::class);
 
         Model::reguard();
     }

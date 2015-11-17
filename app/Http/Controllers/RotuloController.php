@@ -28,9 +28,17 @@ class RotuloController extends Controller
     {
 
         $rotulos = Rotulo::all();
-        return view('rotulo.index',['rotulos' => $rotulos, 'user' => $this->user]);
+        return view('rotulo.index',[
+            'rotulos' => $rotulos,
+            'user' => $this->user]);
     }
-    
+
+    public function getHospedes($id)
+    {
+        $rotulo = Rotulo::find($id);
+        return $rotulo->hospedes;
+    }
+
     public function teste(Request $request){
         dd($request);
     }
@@ -42,7 +50,6 @@ class RotuloController extends Controller
      */
     public function create()
     {
-
         return view('rotulo.create', ['user' => $this->user ]);
     }
 

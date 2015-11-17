@@ -22,7 +22,7 @@ function verificaNomeHospedeExiste(nome)
 {
     var retorno;
     $.ajax({
-        url: "/validaHospede/"+nome,
+        url: '/hospede/validaHospede/'+nome,
         type: "GET",
         dataType: "text",
         async: false,

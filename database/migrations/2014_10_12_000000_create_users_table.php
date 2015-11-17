@@ -22,6 +22,8 @@ class CreateUsersTable extends Migration
                 ->default(1);
                 
             $table->foreign('acl')->references('id')->on('acl');
+
+            $table->index('name');
             
             $table->rememberToken();
             $table->nullableTimestamps();

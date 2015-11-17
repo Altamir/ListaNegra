@@ -5,6 +5,8 @@ namespace ListaNegra\Http\Controllers;
 use Illuminate\Http\Request;
 
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\View;
 use ListaNegra\Hospede;
 use ListaNegra\Hostel;
 use ListaNegra\Http\Requests;
@@ -31,13 +33,22 @@ class HospedeController extends Controller
      */
     public function index()
     {
-        dd( Hospede::all());
+        $hospedes=Hospede::all();
+        return view ('hospede.index', ['user' => $this->usuarioLogado,
+                        'hospedes' => $hospedes]);
     }
 
 
     public function verificaSeExistePorNome($nome){
         $hospedes = Hospede::where('name', '=' ,$nome)->get()->first();
         return count($hospedes);
+    }
+
+    public function getRorulos($id)
+    {
+        $hospede = Hospede::find($id);
+
+        return $hospede->rotulos;
     }
 
     /**
@@ -48,8 +59,9 @@ class HospedeController extends Controller
     public function create()
     {
         $rotulos = Rotulo::all();
-        return view ('hospede.create', ['user' => $this->usuarioLogado, 'rotulos' => $rotulos]);
-    
+        return view ('hospede.create', [
+            'user' => $this->usuarioLogado,
+            'rotulos' => $rotulos]);
     }
 
     /**
@@ -62,8 +74,15 @@ class HospedeController extends Controller
     {
         $request_ = $request->all();
         $request_['user_id'] = $this->usuarioLogado->id;
-        
-        return Hospede::create($request_);
+        $hospede = Hospede::create($request_);
+        $rotulo_hospede = [];
+        $rotulo_hospede['hospede_id'] = $hospede->id;
+        $rotulo_hospede['rotulo_id'] = $request_['rotulo_id'];
+        $rotulo_hospede['descri'] = $request_['descri'];
+        DB::table('hospedes_rotulos')->insert(
+           $rotulo_hospede
+        );
+        return redirect( route('hospede'));
     }
 
     /**
@@ -74,7 +93,10 @@ class HospedeController extends Controller
      */
     public function show($id)
     {
-        //
+        $hospede = Hospede::find($id);
+        return View('hospede.show',[
+            'user' => $this->usuarioLogado,
+            'hospede' => $hospede]);
     }
 
     /**
@@ -85,7 +107,13 @@ class HospedeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $hospede = Hospede::find($id);
+        $rotulos = Rotulo::all();
+        return view('hospede.edit',[
+            'user' => $this->usuarioLogado,
+            'hospede' => $hospede,
+            'rotulos'=> $rotulos
+        ]);
     }
 
     /**
@@ -97,7 +125,33 @@ class HospedeController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $dados_request = $request->all();
+        $rotulo_hospede = [];
         //
+        if(isset($dados_request['rotulo_id'])){
+            $rotulo_hospede['hospede_id'] = $id;
+            $rotulo_hospede['rotulo_id'] = $dados_request['rotulo_id'];
+            $rotulo_hospede['descri'] = $dados_request['descri'];
+        }
+
+        if(  Hospede::find($id)->update( $request->all() ) ){
+            if(isset($dados_request['rotulo_id'])) {
+                for ($i = 0; $i < count($rotulo_hospede['rotulo_id']); $i++) {
+
+                    DB::table('hospedes_rotulos')->insert(
+                        [   'hospede_id' => $rotulo_hospede['hospede_id'],
+                            'rotulo_id' => $rotulo_hospede['rotulo_id'][$i],
+                            'descri' => $rotulo_hospede['descri'][$i]
+                        ]
+                    );
+                }
+            }
+
+        }else{
+            return"Erro ao salvar a Edição";
+        }
+
+        return redirect( route('hospede'));
     }
 
     /**
