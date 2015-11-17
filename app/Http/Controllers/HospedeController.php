@@ -59,9 +59,12 @@ class HospedeController extends Controller
     public function create()
     {
         $rotulos = Rotulo::all();
+        $nameDocs = ['CPF','RG','Passaport'];
         return view ('hospede.create', [
             'user' => $this->usuarioLogado,
-            'rotulos' => $rotulos]);
+            'rotulos' => $rotulos,
+            'nameDocs' => $nameDocs
+        ]);
     }
 
     /**
@@ -72,15 +75,26 @@ class HospedeController extends Controller
      */
     public function store(Request $request)
     {
+        //dd($request->all());
         $request_ = $request->all();
         $request_['user_id'] = $this->usuarioLogado->id;
         $hospede = Hospede::create($request_);
+
         $rotulo_hospede = [];
         $rotulo_hospede['hospede_id'] = $hospede->id;
         $rotulo_hospede['rotulo_id'] = $request_['rotulo_id'];
         $rotulo_hospede['descri'] = $request_['descri'];
+
+        $documento_hospede = [];
+        $documento_hospede['hospede_id'] = $hospede->id;
+        $documento_hospede['name'] = $request_['documento_name'];
+        $documento_hospede['numero'] = $request_['documento_num'];
         DB::table('hospedes_rotulos')->insert(
            $rotulo_hospede
+        );
+
+        DB::table('documentos')->insert(
+            $documento_hospede
         );
         return redirect( route('hospede'));
     }
@@ -134,23 +148,22 @@ class HospedeController extends Controller
             $rotulo_hospede['descri'] = $dados_request['descri'];
         }
 
-        if(  Hospede::find($id)->update( $request->all() ) ){
-            if(isset($dados_request['rotulo_id'])) {
-                for ($i = 0; $i < count($rotulo_hospede['rotulo_id']); $i++) {
 
-                    DB::table('hospedes_rotulos')->insert(
-                        [   'hospede_id' => $rotulo_hospede['hospede_id'],
-                            'rotulo_id' => $rotulo_hospede['rotulo_id'][$i],
-                            'descri' => $rotulo_hospede['descri'][$i]
-                        ]
-                    );
-                }
+
+        Hospede::find($id)->update( $dados_request ) ;
+
+
+        if(isset($dados_request['rotulo_id'])) {
+            for ($i = 0; $i < count($rotulo_hospede['rotulo_id']); $i++) {
+
+                DB::table('hospedes_rotulos')->insert(
+                    [   'hospede_id' => $rotulo_hospede['hospede_id'],
+                        'rotulo_id' => $rotulo_hospede['rotulo_id'][$i],
+                        'descri' => $rotulo_hospede['descri'][$i]
+                    ]
+                );
             }
-
-        }else{
-            return"Erro ao salvar a Edição";
         }
-
         return redirect( route('hospede'));
     }
 

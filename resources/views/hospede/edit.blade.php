@@ -47,6 +47,12 @@
                         <label class="mdl-textfield__label" for="name">Nome:</label>
                     </div>
 
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input type="hidden" name="documento.name" value="{{$hospede->documento->name}}">
+                            <input class="mdl-textfield__input" required="required" type="text" id="documento.numero" name="documento.numero" value="{{$hospede->documento->numero}}" />
+                            <label class="mdl-textfield__label" for="documento.numero">{{$hospede->documento->name}}:</label>
+                        </div>
+
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                         <input class="mdl-textfield__input" type="tel"  pattern="-?[0-9]*(\.[0-9]+)?" maxlength="15"
                                required="required" id="telefone" name="telefone" value="{{ $hospede->telefone}}" />
