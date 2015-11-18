@@ -136,9 +136,14 @@ Route::group( ['middleware' => ['auth','acl'], 'prefix'=>'adm'] , function()
 {
     Route::get('reset-banco',function()
     {
-        $output = shell_exec('cd .. ; 
+        $output = shell_exec('cd .. ;
          php artisan migrate:refresh --seed');
         dd($output);
+    });
+
+    Route::get('documentos/{id}',function($id){
+        $hospede = \ListaNegra\Hospede::find($id);
+        dd($hospede->documento->name);
     });
 
 });

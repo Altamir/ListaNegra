@@ -14,13 +14,13 @@ class Hospede extends Seeder
         DB::table('hospedes')->delete();
         
         DB::table('hospedes')->insert([
-            'name' => 'LAzario Borto',
+            'name' => 'Lazario Borto',
             'telefone' => '(51) 4312-3465',
             'user_id' => '1',
         ]);
         
          DB::table('hospedes')->insert([
-            'name' => 'Otario das VArxea',
+            'name' => 'Antonio camargo',
             'telefone' => '(51) 2134-3765',
              'user_id' => '1',
         ]);

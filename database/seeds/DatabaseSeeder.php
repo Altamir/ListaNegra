@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
         $this->call(Hospede::class);
         $this->call(Rotulo::class);
         $this->call(hospedes_rotulos::class);
+        $this->call(DocumentosSeeders::class);
 
         Model::reguard();
     }
