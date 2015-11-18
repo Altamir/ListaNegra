@@ -125,20 +125,22 @@
                                 '</select>'+
                         '</div>'+
 
-                        '<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">'+
+                        '<div id="divD" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">'+
                             '<textarea class="mdl-textfield__input" required="required"'+
                                 'id="descri" name="descri[]"></textarea>'+
-                            '<label class="mdl-textfield__label" for="descri">Descrição:</label>'+
+                            '<label class="mdl-textfield__label" for="descri[]">Descrição:</label>'+
                         '</div>';
+
 
             $("#addRotulo").click(function( e ){
                 $('#inputs_adicionais').append( input );
             });
 
-            $('#inputs_adicionais').delegate('a','click',function( e ){
-                e.preventDefault();
-                $( this ).parent('label').remove();
+
+            $(document).on("focusin", '#descri', function(){
+                $( this ).parent('#divD').addClass( "is-dirty" );
             });
+
 
             $('#name').blur(function(){
                 var nomeNew = $(this).val()

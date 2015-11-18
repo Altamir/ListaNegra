@@ -152,18 +152,9 @@ class HospedeController extends Controller
         Documento::find($hospede->documento->id)
             ->update(['numero' => $dados_request['documento_numero'] ]);
 
-       
-        if(isset($dados_request['rotulo_id'])) {
-            for ($i = 0; $i < count($rotulo_hospede['rotulo_id']); $i++) {
 
-                DB::table('hospedes_rotulos')->insert(
-                    [   'hospede_id' => $rotulo_hospede['hospede_id'],
-                        'rotulo_id' => $rotulo_hospede['rotulo_id'][$i],
-                        'descri' => $rotulo_hospede['descri'][$i]
-                    ]
-                );
-            }
-        }
+        $this->If_isset_SalvaDocumento($dados_request, $rotulo_hospede);
+        
         return redirect( route('hospede'));
     }
 
@@ -193,5 +184,24 @@ class HospedeController extends Controller
             return array($dados_request, $rotulo_hospede);
         }
         return array($dados_request, $rotulo_hospede);
+    }
+
+    /**
+     * @param $dados_request
+     * @param $rotulo_hospede
+     */
+    private function If_isset_SalvaDocumento($dados_request, $rotulo_hospede)
+    {
+        if (isset($dados_request['rotulo_id'])) {
+            for ($i = 0; $i < count($rotulo_hospede['rotulo_id']); $i++) {
+
+                DB::table('hospedes_rotulos')->insert(
+                    ['hospede_id' => $rotulo_hospede['hospede_id'],
+                        'rotulo_id' => $rotulo_hospede['rotulo_id'][$i],
+                        'descri' => $rotulo_hospede['descri'][$i]
+                    ]
+                );
+            }
+        }
     }
 }
