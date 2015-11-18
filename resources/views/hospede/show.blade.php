@@ -48,6 +48,14 @@
                         <label class="mdl-textfield__label" for="telefone">Telefone</label>
                     </div>
 
+
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <input class="mdl-textfield__input" readonly="readonly" required="required" type="text"
+                               id="documento" name="documento" value="{{$hospede->documento->numero}}"/>
+                        <label class="mdl-textfield__label" for="documento">{{$hospede->documento->name}}:</label>
+                    </div>
+
+
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                         <input class="mdl-textfield__input" type="text" readonly="readonly"
                                id="cadastro" name="cadastro" value="{{$hospede->user->name}}"

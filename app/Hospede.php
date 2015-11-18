@@ -9,6 +9,11 @@ class Hospede extends Model
      
      protected $fillable = ['name','telefone','user_id'];
 
+     public function documento()
+     {
+          return $this->hasOne(Documento::class);
+     }
+
      public function user(){
          return $this->hasOne(User::class,'id','user_id');
      }
