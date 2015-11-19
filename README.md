@@ -50,7 +50,20 @@ No termina:
 7- Acessar no navegador endereço `
 [localhost:8000](http://localhost:8000)
 
+Para utilizar deverá logar, para teste como Administrador utilizar o email:
 
+Email:
+   
 
+     adm@convidado.com
+Senha:
 
+    12345
+    
+  Para teste como Usuario utilizar o email:
+Email:
 
+    user@convidado.com
+Senha:
+
+    12345
