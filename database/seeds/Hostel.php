@@ -24,5 +24,10 @@ class Hostel extends Seeder
             'user_id' => 2,
             'descri' => 'Casa Azul com buteco embaixo',
             ]);
+        DB::table('hostel')->insert([
+            'telefone' => '1234-5678',
+            'user_id' => 3,
+            'descri' => 'Usuario Convidado',
+        ]);
     }
 }
