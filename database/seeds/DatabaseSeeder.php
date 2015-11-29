@@ -17,8 +17,9 @@ class DatabaseSeeder extends Seeder
         $this->call(Acl::class);
         $this->call(Usuarios::class);
         $this->call(Hostel::class);
-        $this->call(Hospede::class);
         $this->call(Rotulo::class);
+        $this->call(Hospede::class);
+
         $this->call(hospedes_rotulos::class);
         $this->call(DocumentosSeeders::class);
 
