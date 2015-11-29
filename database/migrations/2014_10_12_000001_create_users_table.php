@@ -21,7 +21,10 @@ class CreateUsersTable extends Migration
                 ->unsigned()
                 ->default(1);
                 
-            $table->foreign('acl')->references('id')->on('acl');
+            $table->foreign('acl')
+                ->references('id')
+                ->on('acl')
+                ->onDelete('cascade');
 
             $table->index('name');
             
