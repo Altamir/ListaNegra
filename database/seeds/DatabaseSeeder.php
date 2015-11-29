@@ -14,9 +14,9 @@ class DatabaseSeeder extends Seeder
     {
         Model::unguard();
 
+        $this->call(Acl::class);
         $this->call(Usuarios::class);
         $this->call(Hostel::class);
-        $this->call(Acl::class);
         $this->call(Hospede::class);
         $this->call(Rotulo::class);
         $this->call(hospedes_rotulos::class);
