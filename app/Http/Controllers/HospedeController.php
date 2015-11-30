@@ -115,6 +115,28 @@ class HospedeController extends Controller
     }
 
     /**
+     *Shoe the form for pesquisa the Hospde For Name
+     * @return Response
+     */
+    public function pesquisa(){
+        return View('hospede.pesquisa',['user' => $this->usuarioLogado]);
+    }
+
+    public function postPesquisa(Request $request){
+        $re = $request->all();
+
+
+        $hospede = Hospede::where('name', 'LIKE',  '%'.$re['name'].'%')->get();
+
+
+
+        return View('hospede.pesquisa',[
+            'user' => $this->usuarioLogado,
+            'hospedes' => $hospede
+        ]);
+    }
+
+    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id

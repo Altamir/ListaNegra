@@ -87,6 +87,16 @@ Route::controllers([
          'uses' => 'HospedeController@index'
      ]);
 
+     Route::get('pesquisa',[
+         'as'    => 'hospede.pesquisa',
+         'uses'  => 'HospedeController@pesquisa'
+     ]);
+
+     Route::post('pesquisa',[
+         'as'  => 'hospede.pesquisa-post',
+         'uses'=> 'HospedeController@postPesquisa'
+     ]);
+
      Route::get('create', [
          'as' => 'hospede.create',
          'uses' => 'HospedeController@create'
