@@ -8,7 +8,7 @@
 
 ----------
 
-<lista-negra-hostel.herokuapp.com>
+[lista-negra-hostel.herokuapp.com](lista-negra-hostel.herokuapp.com)
 
 >**Aplicação desenvolvida para cadeira de Desenvolvimento de Software.**
 
